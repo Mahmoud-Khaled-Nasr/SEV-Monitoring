@@ -1,13 +1,14 @@
 import datetime
 
 from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy.orm import relationship
 
 from database import DatabaseBaseClass
 
 
 class Lap(DatabaseBaseClass):
 
-    __tablename__ = 'labs'
+    __tablename__ = 'laps'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     start_time = Column(DateTime, default=datetime.datetime.utcnow())
@@ -15,12 +16,14 @@ class Lap(DatabaseBaseClass):
     name = Column(String)
     comments = Column(String, nullable=True)
 
+    data_frames = relationship("DataFrame")
+
     def __init__(self, name: str, comments: str = None):
+        self.name = name
         if comments is None:
             self.comments = ""
         else:
             self.comments = comments
-        self.name = name
 
     def __repr__(self):
         return "<Lap(lap id='%d', starting time='%s', finishing time='%s', name='%s', comments='%s')>" \

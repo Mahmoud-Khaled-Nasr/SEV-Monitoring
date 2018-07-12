@@ -5,7 +5,7 @@ from sqlalchemy import ForeignKey, Column, Integer, DateTime, VARBINARY
 from sqlalchemy.orm import relationship
 
 from database import DatabaseBaseClass
-from models.laps.lap import Lap
+# from models.laps.lap import Lap
 
 
 class DataFrame(DatabaseBaseClass):
@@ -17,9 +17,9 @@ class DataFrame(DatabaseBaseClass):
     time = Column(DateTime, default=datetime.datetime.utcnow())
     frame_id = Column(Integer)
     frame_value = Column(VARBINARY(8))
-    lap_id = Column(Integer, ForeignKey(Lap.id))
+    lap_id = Column(Integer, ForeignKey("laps.id"), nullable=False)
 
-    lap = relationship("Lap", back_populates=__tablename__)
+    lap = relationship("Lap", back_populates="data_frames")
 
     @abstractmethod
     def __init__(self, frame_id: int, frame_value: bytes):
