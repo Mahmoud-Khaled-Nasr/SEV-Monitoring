@@ -2,7 +2,7 @@ import datetime
 
 from sqlalchemy import Column, Integer, String, DateTime
 
-from globals import DatabaseBaseClass
+from database import DatabaseBaseClass
 
 
 class Lap(DatabaseBaseClass):

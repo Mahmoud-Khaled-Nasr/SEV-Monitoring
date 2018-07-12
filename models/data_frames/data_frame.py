@@ -1,9 +1,9 @@
 import datetime
 from abc import ABCMeta, abstractmethod
 
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, DateTime, VARBINARY
 
-from globals import DatabaseBaseClass
+from database import DatabaseBaseClass
 
 
 class DataFrame(DatabaseBaseClass):
@@ -14,7 +14,7 @@ class DataFrame(DatabaseBaseClass):
     id = Column(Integer, primary_key=True, autoincrement=True)
     time = Column(DateTime, default=datetime.datetime.utcnow())
     frame_id = Column(Integer)
-    frame_value = Column(String(8))
+    frame_value = Column(VARBINARY(8))
 
     @abstractmethod
     def __init__(self, frame_id: int, frame_value: bytes):
@@ -25,5 +25,3 @@ class DataFrame(DatabaseBaseClass):
     def __repr__(self):
         return "<User(record id='%d', time='%s', frame ID='%d', frame value='%s')>" \
                % (self.id, self.time, self.frame_id, self.frame_value)
-
-
