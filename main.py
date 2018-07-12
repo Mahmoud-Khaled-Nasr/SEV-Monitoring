@@ -1,7 +1,5 @@
-from GUI.GUI import GUI
-from dispatcher import Dispatcher
+import globals
 
 if __name__ == "__main__":
+    from dispatcher import Dispatcher
     dispatcher = Dispatcher()
-    gui = GUI(dispatcher)
-    dispatcher.set_gui_object(gui)
