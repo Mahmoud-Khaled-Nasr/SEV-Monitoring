@@ -15,8 +15,4 @@ print(database_engine)
 
 Session = sessionmaker(bind=database_engine)
 
-database_session = Session()
-
-
-def get_database_session():
-    return database_session
+database_session: Session = Session()

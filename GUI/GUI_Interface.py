@@ -1,9 +1,11 @@
 from PyQt5 import QtWidgets
-from GUI_Qt import Ui_MainWindow
+from GUI.GUI_Qt import Ui_MainWindow
 from typing import List
 import sys
 
+
 class GUIApp(Ui_MainWindow):
+
     # Constructor
     def __init__(self):
         # Create a QApplication object
@@ -14,17 +16,18 @@ class GUIApp(Ui_MainWindow):
         self.setupUi(self.MainWindow)
         # Maximize the main window
         self.MainWindow.showMaximized()
+
+    def start_gui(self):
         # Start the main event loop
         sys.exit(self.Qapp.exec_())
 
-
     # Updates the currents on the GUI
-    def updateCurrents(self, batteryCurrent: float, motorsCurrent: float, spanelsCurrent: float):
+    def updateCurrents(self, batteryCurrent: float, motorsCurrent: float, solarPanelsCurrent: float):
         # Convert the passed floats to strings with precision 2 dp
         #  then set it as text for the output label
         self.batteryCurrent.setText("{:.2f}".format(batteryCurrent))
         self.motorsCurrent.setText("{:.2f}".format(motorsCurrent))
-        self.spanelsCurrent.setText("{:.2f}".format(spanelsCurrent))
+        self.spanelsCurrent.setText("{:.2f}".format(solarPanelsCurrent))
 
 
     # Updates the voltages on the GUI
@@ -36,11 +39,11 @@ class GUIApp(Ui_MainWindow):
 
 
     # Updates the temperatures on the GUI
-    def updateTemps(self, xTemp: float, spanelsTemp: float, yTemp: float):
+    def updateTemps(self, xTemp: float, solarPanelsTemp: float, yTemp: float):
         # Convert the passed floats to strings with precision 2 dp
         # then set it as text for the output label
         self.xTemp.setText("{:.2f}".format(xTemp))
-        self.spanelsTemp.setText("{:.2f}".format(spanelsTemp))
+        self.spanelsTemp.setText("{:.2f}".format(solarPanelsTemp))
         self.yTemp.setText("{:.2f}".format(yTemp))
 
 
@@ -144,6 +147,3 @@ class GUIApp(Ui_MainWindow):
                 switchFrame.setStyleSheet("background-color: black;\n"
                                          "border-radius: 15px;\n"
                                          "")
-
-# For testing
-app = GuiApp()
