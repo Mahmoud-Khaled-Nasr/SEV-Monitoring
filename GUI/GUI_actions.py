@@ -3,6 +3,7 @@ from enum import Enum
 from PyQt5.QtCore import pyqtSignal, QObject
 from PyQt5.QtWidgets import QMessageBox, QPushButton
 from PyQt5.QtGui import QFont, QIcon
+from definitions import ConnectionTypes
 
 
 class ButtonModes(Enum):
@@ -14,7 +15,7 @@ class ButtonModes(Enum):
 
 class GUIActions(QObject):
     # Signals
-    signal_start = pyqtSignal(int)  # Should add parameter type for connection method 0:usb 1:wireless
+    signal_start = pyqtSignal(ConnectionTypes)
     signal_stop = pyqtSignal()
     signal_pause = pyqtSignal(bool)
 
@@ -58,7 +59,7 @@ class GUIActions(QObject):
             self.signal_pause.emit(False)
 
     # Gets the connection type through a message box
-    def __get_connection_type(self) -> int:
+    def __get_connection_type(self) -> ConnectionTypes:
         # Create and style the message box
         msg_box = QMessageBox()
         msg_box.setWindowTitle("Connection Method")
@@ -70,6 +71,12 @@ class GUIActions(QObject):
         font.setPointSize(12)
         msg_box.setFont(font)
         # Add the buttons
-        msg_box.addButton(QPushButton("USB"), QMessageBox.YesRole)      # 0
-        msg_box.addButton(QPushButton("Wireless"), QMessageBox.NoRole)  # 1
-        return msg_box.exec_()  # Either 0 or 1
+        usb_button = QPushButton("USB")
+        wireless_button = QPushButton("Wireless")
+        msg_box.addButton(usb_button, QMessageBox.YesRole)
+        msg_box.addButton(wireless_button, QMessageBox.NoRole)
+        msg_box.exec_()
+        if msg_box.clickedButton() is usb_button:
+            return ConnectionTypes.USB
+        elif msg_box.clickedButton() is wireless_button:
+            return ConnectionTypes.WIRELESS

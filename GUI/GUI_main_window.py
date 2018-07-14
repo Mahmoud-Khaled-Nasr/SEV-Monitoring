@@ -1,4 +1,5 @@
-﻿# Qt Designer Code
+﻿import sys
+# Qt Designer Code
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
@@ -2920,3 +2921,14 @@ class Ui_MainWindow(object):
         self.batteryTemp14.setText(_translate("MainWindow", "25.25"))
         self.label_204.setText(_translate("MainWindow", "°C"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.batteries_tab), _translate("MainWindow", "Batteries Details"))
+
+
+############################################
+# Manually added code
+
+class MainWindow(Ui_MainWindow):
+    def __init__(self):
+        self.app = QtWidgets.QApplication(sys.argv)
+        self.main_window = QtWidgets.QMainWindow()
+        self.setupUi(self.main_window)
+        self.main_window.showMaximized()

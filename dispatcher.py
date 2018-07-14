@@ -5,7 +5,7 @@ from input.input import SerialInterface
 from models.data_frames.data_frame import DataFrame
 from models.laps.lap import Lap
 from database import Session
-
+from definitions import ConnectionTypes
 
 class Dispatcher(QObject):
 
@@ -31,7 +31,7 @@ class Dispatcher(QObject):
     def receive_serial_data_handler(self, data_frame: DataFrame) -> None:
         pass
 
-    @pyqtSlot(int)   # temporary: 0: usb, 1:wireless
+    @pyqtSlot(ConnectionTypes)   
     def start_handler(self):
         pass
 
