@@ -18,10 +18,12 @@ class Dispatcher(QObject):
         self.database_session: Session = database_session
         self.current_lap: Lap = None
 
+    # Connects gui signals to their slots
     def make_gui_connections(self) -> None:
         self.gui_interface.gui_actions.signal_start.connect(self.start_handler)
         self.gui_interface.gui_actions.signal_stop.connect(self.stop_handler)
 
+    # Connect serial input signals to their slots
     def make_serial_interface_connections(self) -> None:
         self.serial_interface.signal_receive_serial_data.connect(self.receive_serial_data_handler)
 
@@ -29,7 +31,7 @@ class Dispatcher(QObject):
     def receive_serial_data_handler(self, data_frame: DataFrame) -> None:
         pass
 
-    @pyqtSlot(int)  #temporary: 0: usb, 1:wireless
+    @pyqtSlot(int)   # temporary: 0: usb, 1:wireless
     def start_handler(self):
         pass
 

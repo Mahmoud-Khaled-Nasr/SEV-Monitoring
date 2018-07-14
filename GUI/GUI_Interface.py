@@ -26,17 +26,18 @@ class GUIInterface:
         # Connect buttons to actions
         self.__set_button_connections()
 
-    def start_gui(self):
+    def start_gui(self) -> None:
         # Start the main event loop
         sys.exit(self.Qapp.exec_())
 
     # Private method for connecting the buttons clicks to their action
-    def __set_button_connections(self):
+    def __set_button_connections(self) -> None:
         self.gui_app.start_stop_button.clicked.connect(self.gui_actions.start_stop_button_clicked)
         self.gui_app.pause_continue_button.clicked.connect(self.gui_actions.pause_continue_button_clicked)
         self.gui_actions.signal_pause.connect(self.set_paused)
 
-    def set_paused(self, is_paused):
+    # Sets the paused flag (slot for the pause signal)
+    def set_paused(self, is_paused: bool) -> None:
         self.paused = is_paused
 
     # Updates the currents on the GUI

@@ -13,38 +13,53 @@ class ButtonModes(Enum):
 
 
 class GUIActions(QObject):
+    # Signals
     signal_start = pyqtSignal(int)  # Should add parameter type for connection method 0:usb 1:wireless
     signal_stop = pyqtSignal()
     signal_pause = pyqtSignal(bool)
 
+    # Constructor
     def __init__(self, gui_app: Ui_MainWindow):
         super(GUIActions, self).__init__()
         self.gui_app = gui_app
         self.start_stop_button_mode = ButtonModes.START
         self.pause_continue_button_mode = ButtonModes.PAUSE
 
-    def start_stop_button_clicked(self):
-        if self.start_stop_button_mode is ButtonModes.START:
+    # Start/Stop button click action
+    def start_stop_button_clicked(self) -> None:
+        if self.start_stop_button_mode is ButtonModes.START:  # If the mode is Start
+            # Get connection type
             connection_type = self.__get_connection_type()
+            # Set the mode and button text to stop
             self.start_stop_button_mode = ButtonModes.STOP
             self.gui_app.start_stop_button.setText("Stop")
+            # Emit a start signal
             self.signal_start.emit(connection_type)
-        else:
+        else:  # If the mode is stop
+            # Set the mode and button text to start
             self.start_stop_button_mode = ButtonModes.START
             self.gui_app.start_stop_button.setText("Start")
+            # Emit a stop signal
             self.signal_stop.emit()
 
-    def pause_continue_button_clicked(self):
-        if self.pause_continue_button_mode is ButtonModes.PAUSE:
+    # Pause/Continue button click action
+    def pause_continue_button_clicked(self) -> None:
+        if self.pause_continue_button_mode is ButtonModes.PAUSE:  # If the mode is pause
+            # Set the mode and button text to continue
             self.pause_continue_button_mode = ButtonModes.CONTINUE
             self.gui_app.pause_continue_button.setText("Continue")
+            # Emit a pause signal
             self.signal_pause.emit(True)
-        else:
+        else:  # If the mode is continue
+            # Set the mode and button text to pause
             self.pause_continue_button_mode = ButtonModes.PAUSE
             self.gui_app.pause_continue_button.setText("Pause")
+            # Emit a continue signal (pause signal with parameter false)
             self.signal_pause.emit(False)
 
-    def __get_connection_type(self):
+    # Gets the connection type through a message box
+    def __get_connection_type(self) -> int:
+        # Create and style the message box
         msg_box = QMessageBox()
         msg_box.setWindowTitle("Connection Method")
         msg_box.setText("Choose a connection method")
@@ -54,6 +69,7 @@ class GUIActions(QObject):
         font.setFamily("Bahnschrift SemiBold SemiConden")
         font.setPointSize(12)
         msg_box.setFont(font)
-        msg_box.addButton(QPushButton("USB"), QMessageBox.YesRole)
-        msg_box.addButton(QPushButton("Wireless"), QMessageBox.NoRole)
-        return msg_box.exec_()
+        # Add the buttons
+        msg_box.addButton(QPushButton("USB"), QMessageBox.YesRole)      # 0
+        msg_box.addButton(QPushButton("Wireless"), QMessageBox.NoRole)  # 1
+        return msg_box.exec_()  # Either 0 or 1
