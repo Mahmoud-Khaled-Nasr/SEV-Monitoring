@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtCore import pyqtSlot
-from GUI.GUI_MainWindow import Ui_MainWindow
-from GUI.GUI_Actions import GUIActions
+from GUI.GUI_main_window import Ui_MainWindow
+from GUI.GUI_actions import GUIActions
 from typing import List
 import sys
 
@@ -58,12 +58,12 @@ class GUIInterface:
             self.gui_app.xVolt.setText("{:.2f}".format(xVolt))
 
     # Updates the temperatures on the GUI
-    def update_temps(self, xTemp: float, solar_panels_temp: float, yTemp: float):
+    def update_temperatures(self, xTemp: float, solar_panels_temperature: float, yTemp: float):
         if not self.paused:
             # Convert the passed floats to strings with precision 2 dp
             # then set it as text for the output label
             self.gui_app.xTemp.setText("{:.2f}".format(xTemp))
-            self.gui_app.spanelsTemp.setText("{:.2f}".format(solar_panels_temp))
+            self.gui_app.spanelsTemp.setText("{:.2f}".format(solar_panels_temperature))
             self.gui_app.yTemp.setText("{:.2f}".format(yTemp))
 
     # Updates the Master Motor MC Data on the GUI

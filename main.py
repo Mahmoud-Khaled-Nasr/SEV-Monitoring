@@ -1,6 +1,6 @@
 from database import database_session
 from dispatcher import Dispatcher
-from GUI.GUI_Interface import GUIInterface
+from GUI.GUI_interface import GUIInterface
 from input.input import SerialInterface
 
 COM_PORT = "COM7"

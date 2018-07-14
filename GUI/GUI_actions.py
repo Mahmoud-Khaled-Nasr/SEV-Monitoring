@@ -1,4 +1,4 @@
-from GUI.GUI_MainWindow import Ui_MainWindow
+from GUI.GUI_main_window import Ui_MainWindow
 from enum import Enum
 from PyQt5.QtCore import pyqtSignal, QObject
 from PyQt5.QtWidgets import QMessageBox, QPushButton

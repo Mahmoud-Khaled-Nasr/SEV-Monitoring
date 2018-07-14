@@ -1,6 +1,6 @@
 from PyQt5.QtCore import QObject, pyqtSlot
 
-from GUI.GUI_Interface import GUIInterface
+from GUI.GUI_interface import GUIInterface
 from input.input import SerialInterface
 from models.data_frames.data_frame import DataFrame
 from models.laps.lap import Lap
