@@ -19,9 +19,9 @@ class ReceiverNewDataFrameAction(Action):
         database_session.commit()
         if isinstance(self.data_frame, CurrentDataFrame):
             self.dispatcher.gui_interface\
-                .updateCurrents(batteryCurrent=self.data_frame.battery_current
-                                , motorsCurrent=self.data_frame.motors_current
-                                , solarPanelsCurrent=self.data_frame.solar_panels_current)
+                .update_currents(battery_current=self.data_frame.battery_current
+                                 , motors_current=self.data_frame.motors_current
+                                 , solar_panels_current=self.data_frame.solar_panels_current)
         '''
         elif isinstance(self.data_frame, BatteryDataFrame):
             self.dispatcher.gui_interface.updateBatteriesData()

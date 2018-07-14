@@ -1,6 +1,5 @@
 from PyQt5.QtCore import QThread, pyqtSignal
 from serial import Serial
-
 from models.data_frames.data_frame import DataFrame
 
 
