@@ -7,6 +7,11 @@ from models.laps.lap import Lap
 from database import Session
 from definitions import ConnectionTypes
 
+from actions.start_action import StartAction
+from actions.receive_new_data_frame_action import ReceiveNewDataFrameAction
+from actions.stop_action import StopAction
+
+
 class Dispatcher(QObject):
 
     def __init__(self, gui_interface: GUIInterface, serial_interface: SerialInterface, database_session: Session):
@@ -29,12 +34,12 @@ class Dispatcher(QObject):
 
     @pyqtSlot(DataFrame)
     def receive_serial_data_handler(self, data_frame: DataFrame) -> None:
-        pass
+        ReceiveNewDataFrameAction(self, data_frame).execute()
 
     @pyqtSlot(ConnectionTypes)   
     def start_handler(self):
-        pass
+        StartAction(self).execute()
 
     @pyqtSlot()
     def stop_handler(self):
-        pass
+        StopAction(self).execute()
