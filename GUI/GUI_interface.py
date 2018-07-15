@@ -1,6 +1,5 @@
 from PyQt5.QtWidgets import QApplication, QMainWindow
-from PyQt5.QtCore import pyqtSlot
-from GUI.GUI_main_window import Ui_MainWindow
+from GUI.GUI_main_window import MainWindow
 from GUI.GUI_actions import GUIActions
 from typing import List
 import sys
@@ -10,15 +9,8 @@ class GUIInterface:
 
     # Constructor
     def __init__(self):
-        self.gui_app = Ui_MainWindow()
-        # Create a QApplication object
-        self.Qapp = QApplication(sys.argv)
-        # Create a MainWindow object
-        self.main_window = QMainWindow()
-        # Setup the user interface
-        self.gui_app.setupUi(self.main_window)
-        # Maximize the main window
-        self.main_window.showMaximized()
+        # Create a main GUI
+        self.gui_app = MainWindow()
         # Create a GUI Actions object
         self.gui_actions = GUIActions(self.gui_app)
         # Set paused flag as false
@@ -28,7 +20,7 @@ class GUIInterface:
 
     def start_gui(self) -> None:
         # Start the main event loop
-        sys.exit(self.Qapp.exec_())
+        sys.exit(self.gui_app.app.exec_())
 
     # Private method for connecting the buttons clicks to their action
     def __set_button_connections(self) -> None:
