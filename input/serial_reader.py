@@ -1,9 +1,9 @@
 from struct import unpack
 
 from PyQt5.QtCore import QThread, pyqtSignal
-from serial import Serial
+from serial import Serial, SerialException
 from models.data_frames.data_frame import DataFrame
-from models.data_frames.current_data_frame import CurrentDataFrame
+from models.data_frames.currents_data_frame import CurrentsDataFrame
 from typing import Callable
 
 
@@ -22,24 +22,27 @@ class SerialReader(QThread):
         self.serial: Serial = None
 
     def run(self):
-        self.serial = Serial(port=self.COM, baudrate=self.baud_rate)
-        # the serial will write to the micro controller to start sending the data
-        self.serial.write(self.STARTING_SEQUENCE)
-        while True:
-            frame_id: int = self.get_frame_id()
-            frame_data: bytes = self.get_frame_data(frame_id)
-            # TODO Yosry implement this
-            '''
-                if frame_id = CURRENT_FRAME_ID:  ==> which is a const defined somewhere with the frame id from the can
-                    frame: CurrentDataFrame(frame_id, frame_data)
-                elif frame_id = OTHER_ID 
-                    frame: OtherFrame(frame_id, frame_data)
-                elif frame_id = other_id2 
-                
-                and so on the frame ids will be saved here as constants u will get them from the excel file
-                then u will emit it at the end
-            '''
-            # self.signal_receive_serial_data.emit(frame)
+        try:
+            self.serial = Serial(port=self.COM, baudrate=self.baud_rate)
+            # the serial will write to the micro controller to start sending the data
+            self.serial.write(self.STARTING_SEQUENCE)
+            while True:
+                frame_id: int = self.get_frame_id()
+                frame_data: bytes = self.get_frame_data(frame_id)
+                # TODO Yosry implement this
+                '''
+                    if frame_id = CURRENT_FRAME_ID:  ==> which is a const defined somewhere with the frame id from the can
+                        frame: CurrentDataFrame(frame_id, frame_data)
+                    elif frame_id = OTHER_ID 
+                        frame: OtherFrame(frame_id, frame_data)
+                    elif frame_id = other_id2 
+                    
+                    and so on the frame ids will be saved here as constants u will get them from the excel file
+                    then u will emit it at the end
+                '''
+                # self.signal_receive_serial_data.emit(frame)
+        except SerialException:
+            print("Could not read from the port")
 
     def get_frame_id(self) -> int:
         _FRAME_ID_PARSING_STRING = ">h"

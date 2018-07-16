@@ -1,7 +1,7 @@
 from actions.action import Action
 from database import database_session
 from models.data_frames.data_frame import DataFrame
-from models.data_frames.current_data_frame import CurrentDataFrame
+from models.data_frames.currents_data_frame import CurrentsDataFrame
 
 
 class ReceiveNewDataFrameAction(Action):
@@ -16,7 +16,7 @@ class ReceiveNewDataFrameAction(Action):
         self.data_frame.lap = self.dispatcher.current_lap
         database_session.add(self.data_frame)
         database_session.commit()
-        if isinstance(self.data_frame, CurrentDataFrame):
+        if isinstance(self.data_frame, CurrentsDataFrame):
             self.dispatcher.gui_interface\
                 .update_currents(battery_current=self.data_frame.battery_current
                                  , motors_current=self.data_frame.motors_current
