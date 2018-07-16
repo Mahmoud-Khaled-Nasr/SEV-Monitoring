@@ -1,6 +1,6 @@
 from GUI.GUI_main_window import MainWindow
 from GUI.GUI_actions import GUIActions, GUIUpdater
-from typing import List
+from typing import List, Callable
 import sys
 
 
@@ -12,9 +12,6 @@ class GUIInterface:
         self.gui_app = MainWindow()
         self.gui_updater = GUIUpdater(self.gui_app)
         self.gui_actions = GUIActions(self.gui_app, self.gui_updater)
-        # Initialize signals
-        self.signal_start = self.gui_actions.signal_start
-        self.signal_stop = self.gui_actions.signal_stop
 
         # Testing
         self.update_currents(30.5, 15.1, 150.312341)
@@ -69,3 +66,11 @@ class GUIInterface:
     # Updates switches status in the GUI
     def update_switches(self, switches_status: List[bool]) -> None:
         self.gui_updater.update_switches(switches_status)
+
+    # Connects the start signal to its slot
+    def connect_start_signal(self, start_slot: Callable) -> None:
+        self.gui_actions.signal_start.connect(start_slot)
+
+    # Connects the stop signal to its slot
+    def connect_stop_signal(self, stop_slot: Callable) -> None:
+        self.gui_actions.signal_stop.connect(stop_slot)

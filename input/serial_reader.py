@@ -4,9 +4,10 @@ from PyQt5.QtCore import QThread, pyqtSignal
 from serial import Serial
 from models.data_frames.data_frame import DataFrame
 from models.data_frames.current_data_frame import CurrentDataFrame
+from typing import Callable
 
 
-class SerialReaderThread(QThread):
+class SerialReader(QThread):
 
     signal_receive_serial_data = pyqtSignal(DataFrame)
 
@@ -15,7 +16,7 @@ class SerialReaderThread(QThread):
     TERMINATING_SEQUENCE: bytes = b'0x11'
 
     def __init__(self, com_port: str, baud_rate: int):
-        super(SerialReaderThread, self).__init__()
+        super(SerialReader, self).__init__()
         self.COM: str = com_port
         self.baud_rate: int = baud_rate
         self.serial: Serial = None
@@ -53,3 +54,7 @@ class SerialReaderThread(QThread):
     def terminate_serial_connection(self) -> None:
         self.serial.write(self.TERMINATING_SEQUENCE)
         self.serial.close()
+        self.terminate()
+
+    def connect_receive_data_signal(self, receive_data_slot: Callable):
+        self.signal_receive_serial_data.connect(receive_data_slot)
