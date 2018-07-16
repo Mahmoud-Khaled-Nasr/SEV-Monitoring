@@ -5,11 +5,11 @@ from models.data_frames.data_frame import DataFrame
 from models.data_frames.current_data_frame import CurrentDataFrame
 
 
-class ReceiverNewDataFrameAction(Action):
+class ReceiveNewDataFrameAction(Action):
 
     def __init__(self, dispatcher: Dispatcher, data_frame: DataFrame):
-        super(ReceiverNewDataFrameAction, self).__init__(dispatcher)
-        self.data_frame = data_frame
+        super(ReceiveNewDataFrameAction, self).__init__(dispatcher)
+        self.data_frame: DataFrame = data_frame
 
     def execute(self):
         # the session must be used from the dispatcher but there is a problem with autocomplete till fixing it i will
@@ -22,6 +22,8 @@ class ReceiverNewDataFrameAction(Action):
                 .update_currents(battery_current=self.data_frame.battery_current
                                  , motors_current=self.data_frame.motors_current
                                  , solar_panels_current=self.data_frame.solar_panels_current)
+        # TODO Yosry after implementing all the data frames classes u will check here and update the gui according to
+        # the type of the object
         '''
         elif isinstance(self.data_frame, BatteryDataFrame):
             self.dispatcher.gui_interface.updateBatteriesData()
