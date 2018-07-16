@@ -67,16 +67,16 @@ class GUIActions(QObject):
         msg_box.setIcon(QMessageBox.Question)
         msg_box.setWindowIcon(QIcon("GUI/sev-cut.ico"))
         font = QFont()
-        font.setFamily("Bahnschrift SemiBold SemiConden")
+        font.setFamily("Bahnschrift SemiBold")
         font.setPointSize(12)
         msg_box.setFont(font)
         # Add the buttons
         usb_button = QPushButton("USB")
-        wireless_button = QPushButton("Wireless")
+        wireless_button = QPushButton("WiFi")
         msg_box.addButton(usb_button, QMessageBox.YesRole)
         msg_box.addButton(wireless_button, QMessageBox.NoRole)
         msg_box.exec_()
         if msg_box.clickedButton() is usb_button:
             return ConnectionTypes.USB
         elif msg_box.clickedButton() is wireless_button:
-            return ConnectionTypes.WIRELESS
+            return ConnectionTypes.WIFI

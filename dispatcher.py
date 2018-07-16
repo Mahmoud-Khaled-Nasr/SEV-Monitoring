@@ -7,6 +7,7 @@ from models.laps.lap import Lap
 from database import Session
 from definitions import ConnectionTypes
 
+
 class Dispatcher(QObject):
 
     def __init__(self, gui_interface: GUIInterface, serial_interface: SerialInterface, database_session: Session):
