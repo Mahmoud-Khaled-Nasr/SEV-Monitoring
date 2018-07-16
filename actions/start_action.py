@@ -7,4 +7,4 @@ class StartAction(Action):
         super().__init__(dispatcher)
 
     def execute(self) -> None:
-        self.dispatcher.serial_interface.start()
+        self.dispatcher.serial_reader.start()

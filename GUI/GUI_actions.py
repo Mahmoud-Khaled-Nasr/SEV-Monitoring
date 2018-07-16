@@ -1,4 +1,5 @@
 from GUI.GUI_main_window import Ui_MainWindow
+from GUI.GUI_updater import GUIUpdater
 from enum import Enum
 from PyQt5.QtCore import pyqtSignal, QObject
 from PyQt5.QtWidgets import QMessageBox, QPushButton
@@ -17,14 +18,17 @@ class GUIActions(QObject):
     # Signals
     signal_start = pyqtSignal(ConnectionTypes)
     signal_stop = pyqtSignal()
-    signal_pause = pyqtSignal(bool)
 
     # Constructor
-    def __init__(self, gui_app: Ui_MainWindow):
+    def __init__(self, gui_app: Ui_MainWindow, gui_updater: GUIUpdater):
         super(GUIActions, self).__init__()
+        # Initializations
         self.gui_app = gui_app
+        self.gui_updater = gui_updater
         self.start_stop_button_mode = ButtonModes.START
         self.pause_continue_button_mode = ButtonModes.PAUSE
+        # Connect button press signals
+        self.__set_button_signals_connections()
 
     # Start/Stop button click action
     def start_stop_button_clicked(self) -> None:
@@ -49,16 +53,21 @@ class GUIActions(QObject):
             # Set the mode and button text to continue
             self.pause_continue_button_mode = ButtonModes.CONTINUE
             self.gui_app.pause_continue_button.setText("Continue")
-            # Emit a pause signal
-            self.signal_pause.emit(True)
+            # Set the pause signal
+            self.gui_updater.set_paused(True)
         else:  # If the mode is continue
             # Set the mode and button text to pause
             self.pause_continue_button_mode = ButtonModes.PAUSE
             self.gui_app.pause_continue_button.setText("Pause")
-            # Emit a continue signal (pause signal with parameter false)
-            self.signal_pause.emit(False)
+            # Set the pause signal
+            self.gui_updater.set_paused(True)
 
-    # Gets the connection type through a message box
+    # Private method: Connects the buttons clicks to their action
+    def __set_button_signals_connections(self) -> None:
+        self.gui_app.start_stop_button.clicked.connect(self.start_stop_button_clicked)
+        self.gui_app.pause_continue_button.clicked.connect(self.pause_continue_button_clicked)
+
+    # Private method: Gets the connection type (USB or WiFi) through a message box
     def __get_connection_type(self) -> ConnectionTypes:
         # Create and style the message box
         msg_box = QMessageBox()
@@ -67,16 +76,16 @@ class GUIActions(QObject):
         msg_box.setIcon(QMessageBox.Question)
         msg_box.setWindowIcon(QIcon("GUI/sev-cut.ico"))
         font = QFont()
-        font.setFamily("Bahnschrift SemiBold SemiConden")
+        font.setFamily("Bahnschrift SemiBold")
         font.setPointSize(12)
         msg_box.setFont(font)
         # Add the buttons
         usb_button = QPushButton("USB")
-        wireless_button = QPushButton("Wireless")
+        wireless_button = QPushButton("WiFi")
         msg_box.addButton(usb_button, QMessageBox.YesRole)
         msg_box.addButton(wireless_button, QMessageBox.NoRole)
         msg_box.exec_()
         if msg_box.clickedButton() is usb_button:
             return ConnectionTypes.USB
         elif msg_box.clickedButton() is wireless_button:
-            return ConnectionTypes.WIRELESS
+            return ConnectionTypes.WIFI
