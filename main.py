@@ -9,8 +9,8 @@ BAUD_RATE = 9600
 if __name__ == "__main__":
 
     gui_interface = GUIInterface()
-    serial_interface = SerialReader(COM_PORT, BAUD_RATE)
-    dispatcher = Dispatcher(gui_interface=gui_interface, serial_interface=serial_interface,
+    serial_reader = SerialReader(COM_PORT, BAUD_RATE)
+    dispatcher = Dispatcher(gui_interface=gui_interface, serial_reader=serial_reader,
                             database_session=database_session)
     # serial_interface.start()
     gui_interface.start_gui()
