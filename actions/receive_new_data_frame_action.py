@@ -1,5 +1,4 @@
 from actions.action import Action
-from dispatcher import Dispatcher
 from database import database_session
 from models.data_frames.data_frame import DataFrame
 from models.data_frames.current_data_frame import CurrentDataFrame
@@ -7,7 +6,7 @@ from models.data_frames.current_data_frame import CurrentDataFrame
 
 class ReceiveNewDataFrameAction(Action):
 
-    def __init__(self, dispatcher: Dispatcher, data_frame: DataFrame):
+    def __init__(self, dispatcher, data_frame):
         super(ReceiveNewDataFrameAction, self).__init__(dispatcher)
         self.data_frame: DataFrame = data_frame
 
