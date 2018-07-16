@@ -21,7 +21,7 @@ class GUIInterface:
         # Create needed dictionaries
         self.ranges = {}
         self.tolerances = {}
-        self.recent_values = {}
+        self.current_values = {}
         # Initialize the dictionaries
         self.__init_ranges_dict()
         self.__init_tolerances_dict()
@@ -109,10 +109,10 @@ class GUIInterface:
     # Checks if the change in value is tolerable
     def __is_tolerable(self, data_label: QLabel, value: float) -> bool:
         # No existing value yet, not tolerable
-        if data_label not in self.recent_values:
+        if data_label not in self.current_values:
             return False
         # The difference magnitude is below the tolerance
-        elif abs(value - self.recent_values[data_label]) < self.tolerances[data_label]:
+        elif abs(value - self.current_values[data_label]) < self.tolerances[data_label]:
             return True
         else:
             return False
@@ -121,8 +121,8 @@ class GUIInterface:
     def __update_label(self, data_label: QLabel, value: float) -> None:
         # Check if the change in value is not tolerable
         if not self.__is_tolerable(data_label, value):
-            # Update the recent value
-            self.recent_values[data_label] = value
+            # Update the current value
+            self.current_values[data_label] = value
             if not self.paused:
                 # Convert the passed floats to strings with precision 2 dp
                 # then set it as text for the output label
