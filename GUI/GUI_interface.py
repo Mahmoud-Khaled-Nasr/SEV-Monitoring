@@ -119,11 +119,11 @@ class GUIInterface:
 
     # Updates the label with the value
     def __update_label(self, data_label: QLabel, value: float) -> None:
-        # Check if the change in value is not tolerable
-        if not self.__is_tolerable(data_label, value):
-            # Update the current value
-            self.current_values[data_label] = value
-            if not self.paused:
+        if not self.paused:
+            # Check if the change in value is not tolerable
+            if not self.__is_tolerable(data_label, value):
+                # Update the current value
+                self.current_values[data_label] = value
                 # Convert the passed floats to strings with precision 2 dp
                 # then set it as text for the output label
                 data_label.setText("{:.2f}".format(value))
