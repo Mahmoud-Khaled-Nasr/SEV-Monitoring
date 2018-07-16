@@ -6,7 +6,7 @@ from models.data_frames.data_frame import DataFrame
 from models.data_frames.current_data_frame import CurrentDataFrame
 
 
-class SerialInterface(QThread):
+class SerialReaderThread(QThread):
 
     signal_receive_serial_data = pyqtSignal(DataFrame)
 
@@ -15,7 +15,7 @@ class SerialInterface(QThread):
     TERMINATING_SEQUENCE: bytes = b'0x11'
 
     def __init__(self, com_port: str, baud_rate: int):
-        super(SerialInterface, self).__init__()
+        super(SerialReaderThread, self).__init__()
         self.COM: str = com_port
         self.baud_rate: int = baud_rate
         self.serial: Serial = None
@@ -38,7 +38,7 @@ class SerialInterface(QThread):
                 and so on the frame ids will be saved here as constants u will get them from the excel file
                 then u will emit it at the end
             '''
-            self.signal_receive_serial_data.emit(frame)
+            # self.signal_receive_serial_data.emit(frame)
 
     def get_frame_id(self) -> int:
         _FRAME_ID_PARSING_STRING = ">h"

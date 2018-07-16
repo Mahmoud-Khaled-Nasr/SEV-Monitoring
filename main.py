@@ -1,7 +1,7 @@
 from database import database_session
 from dispatcher import Dispatcher
 from GUI.GUI_interface import GUIInterface
-from input.input import SerialInterface
+from input.serial_interface import SerialInterface
 
 COM_PORT = "COM7"
 BAUD_RATE = 9600
