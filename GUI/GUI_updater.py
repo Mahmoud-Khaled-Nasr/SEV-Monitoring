@@ -216,9 +216,17 @@ class GUIUpdater:
                 temp_label.parent().setStyleSheet(frame_stylesheet)
 
             # Set the highlights
-            max_volt = max(list(self.batteries_volts.values()))
-            min_volt = min(list(self.batteries_volts.values()))
-            max_temp = max(list(self.batteries_temperatures.values()))
+            if not self.batteries_volts:  # If the dictionary is empty; initial frame
+                max_volt = battery_volt
+                min_volt = battery_volt
+            else:
+                max_volt = max(list(self.batteries_volts.values()))
+                min_volt = min(list(self.batteries_volts.values()))
+
+            if not self.batteries_temperatures:  # If the dictionary is empty; initial frame
+                max_temp = battery_temp
+            else:
+                max_temp = max(list(self.batteries_temperatures.values()))
 
             # Updates the labels with the given values
             self.update_label(self.gui_app.minBatteryVolt, min_volt)
