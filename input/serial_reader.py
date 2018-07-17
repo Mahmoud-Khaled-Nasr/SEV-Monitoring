@@ -27,15 +27,15 @@ class SerialReader(QThread):
         self.COM: str = com_port
         self.baud_rate: int = baud_rate
         self.serial: Serial = None
-        self.isStopped = False
 
     def run(self):
         try:
+            print("reading started")  # For testing
             self.serial = Serial(port=self.COM, baudrate=self.baud_rate)
-            # the serial will write to the micro controller to start sending the data
+            # serial will signal the microcontroller to start sending the data
             self.serial.write(self.STARTING_SEQUENCE)
             # Reading loop
-            while not self.isStopped:
+            while True:
                 # Get frame id
                 frame_id: int = self.__get_frame_id()
                 # Get frame data
@@ -45,10 +45,9 @@ class SerialReader(QThread):
                 # Emit a signal
                 self.signal_receive_serial_data.emit(frame)
 
-            self.serial.write(self.TERMINATING_SEQUENCE)
-            self.serial.close()
-
         except SerialException:
+            # serial object wasn't successfully created
+            # Could not open port
             print("Could not read from the port")
 
     def __get_frame_id(self) -> int:
@@ -89,8 +88,16 @@ class SerialReader(QThread):
             module_number = IDs.modules_frame_ids.index(frame_id) + 1
             return BatteryDataFrame(frame_id, frame_data, module_number)
 
-    def stop_reading(self) -> None:
-        self.isStopped = True
+    def stop(self):
+        # Check that the serial object was successfully created
+        if self.serial:
+            # serial will signal the microcontroller to stop sending the data
+            self.serial.write(self.TERMINATING_SEQUENCE)
+            # Close the port
+            self.serial.close()
+        self.quit()  # Stops executing the thread
+        self.wait()  # Ensures successful quit to avoid problems on restarting
+        print("reading stopped")  # For testing
 
     def connect_receive_data_signal(self, receive_data_slot: Callable):
         self.signal_receive_serial_data.connect(receive_data_slot)

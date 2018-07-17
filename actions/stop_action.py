@@ -7,7 +7,5 @@ class StopAction(Action):
         super().__init__(dispatcher)
 
     def execute(self) -> None:
-        # TODO check this logic because the function in the thread probably runs differently
-        # and this will miss things up (Mahmoud)
-        # Should be done (Yosry)
-        self.dispatcher.serial_reader.stop_reading()
+        # Properly stops reading, closes the port, and stops executing the thread
+        self.dispatcher.serial_reader.stop()
