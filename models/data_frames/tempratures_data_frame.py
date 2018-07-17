@@ -1,6 +1,6 @@
 from struct import unpack
 
-from models.data_frames.data_frame import DataFrame
+from models.data_frames.data_frame import DataFrame, GUIInterface
 
 
 class TemperaturesDataFrame(DataFrame):
@@ -22,4 +22,10 @@ class TemperaturesDataFrame(DataFrame):
                "solar panels temperature='%d', y temperature='%d')>" \
                % (self.frame_id, self.frame_value, self.x_temperature
                   , self.solar_panels_temperature, self.y_temperature)
+
+    # Updates the gui values
+    def update_gui(self, gui_interface: GUIInterface) -> None:
+        gui_interface.update_temperatures(xTemp=self.x_temperature,
+                                          solar_panels_temperature=self.solar_panels_temperature,
+                                          yTemp=self.y_temperature)
 

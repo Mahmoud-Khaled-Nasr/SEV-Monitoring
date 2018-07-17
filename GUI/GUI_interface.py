@@ -56,8 +56,8 @@ class GUIInterface:
         self.gui_updater.update_label(self.gui_app.slaveSpeed, slave_speed)
 
     # Updates the batteries data
-    def update_batteries(self, batteries_volts: List[float], batteries_temps: List[float]) -> None:
-        self.gui_updater.update_batteries(batteries_volts, batteries_temps)
+    def update_battery(self, module_number: int, battery_volt: float, battery_temperature: float) -> None:
+        self.gui_updater.update_battery(module_number, battery_volt, battery_temperature)
 
     # Updates lights status in the GUI
     def update_lights(self, lights_status: List[bool]) -> None:

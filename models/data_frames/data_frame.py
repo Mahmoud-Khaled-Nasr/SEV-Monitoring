@@ -5,6 +5,8 @@ from sqlalchemy import ForeignKey, Column, Integer, DateTime, VARBINARY
 from sqlalchemy.orm import relationship
 
 from database import DatabaseBaseClass
+
+from GUI.GUI_interface import GUIInterface
 # from models.laps.lap import Lap
 
 
@@ -35,3 +37,8 @@ class DataFrame(DatabaseBaseClass):
     def __repr__(self):
         return "<User(record id='%d', time='%s', frame ID='%d', frame value='%s')>" \
                % (self.id, self.time, self.frame_id, self.frame_value)
+
+    # Updates the gui values
+    @abstractmethod
+    def update_gui(self, gui_interface: GUIInterface) -> None:
+        pass

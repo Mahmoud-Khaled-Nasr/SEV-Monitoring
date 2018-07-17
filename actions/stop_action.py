@@ -8,5 +8,6 @@ class StopAction(Action):
 
     def execute(self) -> None:
         # TODO check this logic because the function in the thread probably runs differently
-        # and this will miss things up
-        self.dispatcher.serial_reader.terminate_serial_connection()
+        # and this will miss things up (Mahmoud)
+        # Should be done (Yosry)
+        self.dispatcher.serial_reader.stop_reading()

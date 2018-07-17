@@ -1,6 +1,6 @@
 from struct import unpack
 
-from models.data_frames.data_frame import DataFrame
+from models.data_frames.data_frame import DataFrame, GUIInterface
 
 
 class BusVoltagesDataFrame(DataFrame):
@@ -20,3 +20,7 @@ class BusVoltagesDataFrame(DataFrame):
     def __repr__(self):
         return "<User( frame ID='%d', frame value='%s', dc bus volt ='%d', x volt ='%d')>" % \
                (self.frame_id, self.frame_value, self.dc_bus_volt, self.x_volt)
+
+    # Updates the gui values
+    def update_gui(self, gui_interface: GUIInterface) -> None:
+        gui_interface.update_volts(dc_bus_volt=self.dc_bus_volt, xVolt=self.x_volt)
