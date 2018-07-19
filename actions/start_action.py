@@ -7,4 +7,5 @@ class StartAction(Action):
         super().__init__(dispatcher)
 
     def execute(self) -> None:
+        # Start the serial reading thread
         self.dispatcher.serial_reader.start()

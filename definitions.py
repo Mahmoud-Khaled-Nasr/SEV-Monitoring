@@ -59,3 +59,14 @@ class Tolerances:
 
     battery_module_volt = 100
     battery_module_temperature = 100
+
+
+class IDs:
+    currents_frame_id = 320
+    bus_voltages_frame_id = 272
+    temperatures_frame_id = 368
+    modules_frame_ids = [640, 641, 642, 643, 644, 645, 646, 647, 648, 649, 656, 657, 658, 659]
+    lights_frame_id = 10
+    switches_frame_id = 11
+    driver_master_mc_frame_id = 1345
+    driver_slave_mc_frame_id = 1409

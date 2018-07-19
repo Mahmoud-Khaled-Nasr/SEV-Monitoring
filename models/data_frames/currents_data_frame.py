@@ -3,20 +3,20 @@ from struct import unpack
 from models.data_frames.data_frame import DataFrame, GUIInterface
 
 
-class SwitchesDataFrame(DataFrame):
+class CurrentsDataFrame(DataFrame):
     # A format string to determine how the bytes are parsed
     # > : Big-endian
-    # ? : boolean
-    _parse_string = ">8?"
+    # H : unsigned short
+    _parse_string = ">HHH"
 
     def __init__(self, frame_id: int, value: bytes):
         super().__init__(frame_id, value)
         # This function break the data down from bytes to the proper values needed by the class
-        # Values are returned in a tuple, which is converted to a list
-        self.switches_status = list(unpack(self._parse_string, self.frame_value[0:8]))
+        # Values are returned in a tuple
+        (self.battery_current, self.motors_current, self.solar_panels_current) \
+            = unpack(self._parse_string, self.frame_value[0:6])
 
     # just for showing the data inside the objects in the times of need
-    # TODO write the __repr__ return
     def __repr__(self):
         return "<User( frame ID='%d', frame value='%s', battery current='%d', motors current='%d'" \
                ", solar panels current='%d')>" \
@@ -25,4 +25,6 @@ class SwitchesDataFrame(DataFrame):
 
     # Updates the gui values
     def update_gui(self, gui_interface: GUIInterface) -> None:
-        gui_interface.update_switches(switches_status=self.switches_status)
+        gui_interface.update_currents(battery_current=self.battery_current,
+                                      motors_current=self.motors_current,
+                                      solar_panels_current=self.solar_panels_current)

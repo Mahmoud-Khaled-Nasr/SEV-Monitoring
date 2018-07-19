@@ -13,6 +13,8 @@ class GUIUpdater:
         self.ranges = {}
         self.tolerances = {}
         self.current_values = {}
+        self.batteries_volts = {}
+        self.batteries_temperatures = {}
         # Initialize the dictionaries
         self.__init_ranges_dict()
         self.__init_tolerances_dict()
@@ -164,29 +166,72 @@ class GUIUpdater:
                     light_frame.setStyleSheet("background-color: black; border-radius: 15px;")
 
     # Updates the batteries data
-    def update_batteries(self, batteries_volts: List[float], batteries_temps: List[float]) -> None:
-        # index is an enumeration, starting at 1
-        # volt and temp are elements in batteryVolts and batteryTemps respectively
-        # eval is used to obtain the right label object through its name
-        for index, (volt, temp) in enumerate(zip(batteries_volts, batteries_temps), 1):
+    def update_battery(self, module_number: int, battery_volt: float, battery_temp: float) -> None:
+        if not self.paused:
             # Get volt label
-            volt_label = eval("self.gui_app.batteryVolt" + str(index))
+            volt_label = eval("self.gui_app.batteryVolt" + str(module_number))
             # Get temperature label
-            temp_label = eval("self.gui_app.batteryTemp" + str(index))
+            temp_label = eval("self.gui_app.batteryTemp" + str(module_number))
+
+            # Update Battery Volt
+            # Check if the change in value is not tolerable
+            if not self.__is_tolerable(volt_label, battery_volt):
+                # Update the current value
+                self.batteries_volts[volt_label] = battery_volt
+                # Convert the passed floats to strings with precision 2 dp
+                # then set it as text for the output label
+                volt_label.setText("{:.2f}".format(battery_volt))
+                # Default stylesheets for labels and their frames
+                stylesheet = "color: black;"
+                parent_frame = volt_label.parent().objectName()
+                frame_stylesheet = "QFrame#" + parent_frame + "{border: 1px solid #828790;}"
+                # Check if it is out of range
+                if not self.__is_in_range(volt_label, battery_volt):
+                    #  Out-of-range stylesheets
+                    stylesheet = "color: #dd0000;"
+                    frame_stylesheet = "QFrame#" + parent_frame + "{border: 1px solid #dd0000;}"
+                # Set stylesheets
+                volt_label.setStyleSheet(stylesheet)
+                volt_label.parent().setStyleSheet(frame_stylesheet)
+
+            # Update Battery Temperature
+            # Check if the change in value is not tolerable
+            if not self.__is_tolerable(temp_label, battery_temp):
+                # Update the current value
+                self.batteries_volts[temp_label] = battery_temp
+                # Convert the passed floats to strings with precision 2 dp
+                # then set it as text for the output label
+                temp_label.setText("{:.2f}".format(battery_temp))
+                # Default stylesheets for labels and their frames
+                stylesheet = "color: black;"
+                parent_frame = temp_label.parent().objectName()
+                frame_stylesheet = "QFrame#" + parent_frame + "{border: 1px solid #828790;}"
+                # Check if it is out of range
+                if not self.__is_in_range(temp_label, battery_temp):
+                    #  Out-of-range stylesheets
+                    stylesheet = "color: #dd0000;"
+                    frame_stylesheet = "QFrame#" + parent_frame + "{border: 1px solid #dd0000;}"
+                # Set stylesheets
+                temp_label.setStyleSheet(stylesheet)
+                temp_label.parent().setStyleSheet(frame_stylesheet)
+
+            # Set the highlights
+            if not self.batteries_volts:  # If the dictionary is empty; initial frame
+                max_volt = battery_volt
+                min_volt = battery_volt
+            else:
+                max_volt = max(list(self.batteries_volts.values()))
+                min_volt = min(list(self.batteries_volts.values()))
+
+            if not self.batteries_temperatures:  # If the dictionary is empty; initial frame
+                max_temp = battery_temp
+            else:
+                max_temp = max(list(self.batteries_temperatures.values()))
 
             # Updates the labels with the given values
-            self.update_label(volt_label, volt)
-            self.update_label(temp_label, temp)
-
-        # Set the highlights
-        max_volt = max(batteries_volts)
-        min_volt = min(batteries_volts)
-        max_temp = max(batteries_temps)
-
-        # Updates the labels with the given values
-        self.update_label(self.gui_app.minBatteryVolt, min_volt)
-        self.update_label(self.gui_app.maxBatteryVolt, max_volt)
-        self.update_label(self.gui_app.maxBatteryTemp, max_temp)
+            self.update_label(self.gui_app.minBatteryVolt, min_volt)
+            self.update_label(self.gui_app.maxBatteryVolt, max_volt)
+            self.update_label(self.gui_app.maxBatteryTemp, max_temp)
 
     # Sets the paused flag (slot for the pause signal)
     def set_paused(self, is_paused: bool) -> None:
