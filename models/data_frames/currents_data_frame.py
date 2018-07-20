@@ -18,8 +18,8 @@ class CurrentsDataFrame(DataFrame):
 
     # just for showing the data inside the objects in the times of need
     def __repr__(self):
-        return "<User( frame ID='%d', frame value='%s', battery current='%d', motors current='%d'" \
-               ", solar panels current='%d')>" \
+        return "<Currents Data Frame( frame ID='%d', frame value='%s', battery current='%d'" \
+               ", motors current='%d', solar panels current='%d')>" \
                % (self.frame_id, self.frame_value, self.battery_current
                   , self.motors_current, self.solar_panels_current)
 

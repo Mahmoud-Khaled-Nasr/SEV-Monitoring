@@ -18,7 +18,7 @@ class TemperaturesDataFrame(DataFrame):
 
     # just for showing the data inside the objects in the times of need
     def __repr__(self):
-        return "<User( frame ID='%d', frame value='%s', x temperature='%d', " \
+        return "<Temperatures Data Frame( frame ID='%d', frame value='%s', x temperature='%d', " \
                "solar panels temperature='%d', y temperature='%d')>" \
                % (self.frame_id, self.frame_value, self.x_temperature
                   , self.solar_panels_temperature, self.y_temperature)

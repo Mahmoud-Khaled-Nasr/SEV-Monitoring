@@ -35,7 +35,7 @@ class DataFrame(DatabaseBaseClass):
     # responsible for the representation of the data when printing the object
     @abstractmethod
     def __repr__(self):
-        return "<User(record id='%d', time='%s', frame ID='%d', frame value='%s')>" \
+        return "<Data Frame(record id='%d', time='%s', frame ID='%d', frame value='%s')>" \
                % (self.id, self.time, self.frame_id, self.frame_value)
 
     # Updates the gui values

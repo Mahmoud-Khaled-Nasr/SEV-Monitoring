@@ -11,7 +11,6 @@ class BatteryDataFrame(DataFrame):
     _parse_string = ">Hh"
 
     def __init__(self, frame_id: int, value: bytes, module_number: int):
-        # TODO add module number
         super().__init__(frame_id, value)
         # This function break the data down from bytes to the proper values needed by the class
         # Values are returned in a tuple
@@ -21,10 +20,11 @@ class BatteryDataFrame(DataFrame):
         self.module_number = module_number
 
     # just for showing the data inside the objects in the times of need
-    # TODO add module number
     def __repr__(self):
-        return "<User( frame ID='%d', frame value='%s', module volt='%d', module temperature='%d')>" % \
-               (self.frame_id, self.frame_value, self.battery_volt, self.battery_temperature)
+        return "<Battery Data Frame( frame ID='%d', frame value='%s',module number='%d', " \
+               "battery volt='%d', battery temperature='%d')>" % \
+               (self.frame_id, self.frame_value, self.battery_volt
+                , self.battery_temperature, self.module_number)
 
     # Updates the gui values
     def update_gui(self, gui_interface: GUIInterface) -> None:

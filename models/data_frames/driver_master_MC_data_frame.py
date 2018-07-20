@@ -18,7 +18,8 @@ class DriverMasterMCDataFrame(DataFrame):
 
     # just for showing the data inside the objects in the times of need
     def __repr__(self):
-        return "<User( frame ID='%d', frame value='%s', master motor current='%d', master motor speed='%d')>" % \
+        return "<Driver Master MC Data Frame( frame ID='%d', frame value='%s', " \
+               "master motor current='%d', master motor speed='%d')>" % \
                (self.frame_id, self.frame_value, self.master_motor_current, self.master_motor_speed)
 
     # Updates the gui values

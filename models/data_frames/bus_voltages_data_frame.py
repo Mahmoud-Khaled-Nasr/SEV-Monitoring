@@ -18,7 +18,7 @@ class BusVoltagesDataFrame(DataFrame):
 
     # just for showing the data inside the objects in the times of need
     def __repr__(self):
-        return "<User( frame ID='%d', frame value='%s', dc bus volt ='%d', x volt ='%d')>" % \
+        return "<Bus Voltage Data Frame( frame ID='%d', frame value='%s', dc bus volt ='%d', x volt ='%d')>" % \
                (self.frame_id, self.frame_value, self.dc_bus_volt, self.x_volt)
 
     # Updates the gui values

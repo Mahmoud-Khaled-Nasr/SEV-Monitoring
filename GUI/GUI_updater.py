@@ -177,6 +177,7 @@ class GUIUpdater:
             # Check if the change in value is not tolerable
             if not self.__is_tolerable(volt_label, battery_volt):
                 # Update the current value
+                self.current_values[volt_label] = battery_volt
                 self.batteries_volts[volt_label] = battery_volt
                 # Convert the passed floats to strings with precision 2 dp
                 # then set it as text for the output label
@@ -198,6 +199,7 @@ class GUIUpdater:
             # Check if the change in value is not tolerable
             if not self.__is_tolerable(temp_label, battery_temp):
                 # Update the current value
+                self.current_values[temp_label] = battery_temp
                 self.batteries_volts[temp_label] = battery_temp
                 # Convert the passed floats to strings with precision 2 dp
                 # then set it as text for the output label
