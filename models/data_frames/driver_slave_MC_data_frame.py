@@ -18,7 +18,8 @@ class DriverSlaveMCDataFrame(DataFrame):
 
     # just for showing the data inside the objects in the times of need
     def __repr__(self):
-        return "<User( frame ID='%d', frame value='%s', slave motor current='%d', slave motor speed='%d')>" % \
+        return "<Drive Slave MC Data Frame( frame ID='%d', frame value='%s', slave motor current='%d', " \
+               "slave motor speed='%d')>" % \
                (self.frame_id, self.frame_value, self.slave_motor_current, self.slave_motor_speed)
 
 # Updates the gui values

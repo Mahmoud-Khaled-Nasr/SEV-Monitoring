@@ -7,7 +7,6 @@
 # Qt Designer
 # Begin
 
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_MainWindow(object):
@@ -24,7 +23,7 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         MainWindow.setFont(font)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../../PycharmProjects/SEV-CUT Task/sev-cut.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("sev-cut.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet("background-color: white")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -304,6 +303,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_15.addWidget(self.dcBusVolt)
         self.gridLayout_2.addWidget(self.frame_36, 0, 1, 1, 1)
         self.gridLayout_2.setColumnStretch(0, 9)
+        self.gridLayout_2.setColumnStretch(1, 5)
+        self.gridLayout_2.setColumnStretch(2, 1)
         self.gridLayout_2.setRowStretch(0, 1)
         self.vLayout1_2.addWidget(self.voltGB_2)
         self.vLayout1_2.setStretch(1, 4)
@@ -2722,8 +2723,8 @@ class Ui_MainWindow(object):
         self.spanelsCurrent.setText(_translate("MainWindow", "25.25"))
         self.motorsCurrent.setText(_translate("MainWindow", "25.25"))
         self.batteryCurrent.setText(_translate("MainWindow", "25.25"))
-        self.voltGB_2.setStatusTip(_translate("MainWindow", "Voltages"))
-        self.voltGB_2.setTitle(_translate("MainWindow", "Voltages"))
+        self.voltGB_2.setStatusTip(_translate("MainWindow", "Bus Voltages"))
+        self.voltGB_2.setTitle(_translate("MainWindow", "Bus Voltages"))
         self.label_71.setText(_translate("MainWindow", "V"))
         self.label_72.setText(_translate("MainWindow", "DC Bus Voltage:"))
         self.label_73.setText(_translate("MainWindow", "V"))
