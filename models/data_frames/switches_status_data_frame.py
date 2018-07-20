@@ -8,9 +8,9 @@ class SwitchesDataFrame(DataFrame):
 
     def __init__(self, frame_id: int, value: bytes):
         super().__init__(frame_id, value)
-        # Create list of lights
+        # Create list of switches
         self.switches_status = []
-        # Evaluate the bits as booleans (light status)
+        # Evaluate the bits as booleans (switch status)
         compare_byte = 0b00000001
         for i in range(1, self.NUMBER_OF_SWITCHES + 1):
             self.switches_status[i] = value[0] & compare_byte
