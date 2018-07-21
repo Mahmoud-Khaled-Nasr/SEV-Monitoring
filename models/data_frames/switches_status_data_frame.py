@@ -2,18 +2,18 @@ from struct import unpack
 
 from models.data_frames.data_frame import DataFrame, GUIInterface
 
-
+# TODO reimplement this class when the new data frames arrives
 class SwitchesDataFrame(DataFrame):
     NUMBER_OF_SWITCHES = 6
 
-    def __init__(self, frame_id: int, value: bytes):
-        super().__init__(frame_id, value)
+    def __init__(self, frame_id: int, frame_value: bytes):
+        super().__init__(frame_id, frame_value)
         # Create list of switches
         self.switches_status = []
         # Evaluate the bits as booleans (switch status)
         compare_byte = 0b00000001
         for i in range(1, self.NUMBER_OF_SWITCHES + 1):
-            self.switches_status[i] = value[0] & compare_byte
+            self.switches_status[i] = frame_value[0] & compare_byte
             compare_byte = compare_byte << 1
 
     # just for showing the data inside the objects in the times of need
