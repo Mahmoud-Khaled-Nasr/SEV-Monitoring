@@ -13,7 +13,7 @@ class Lap(DatabaseBaseClass):
     id = Column(Integer, primary_key=True, autoincrement=True)
     start_time = Column(DateTime, default=datetime.datetime.utcnow())
     finish_time = Column(DateTime, nullable=True)
-    name = Column(String)
+    name = Column(String, nullable=False)
     comments = Column(String, nullable=True)
 
     data_frames = relationship("DataFrame")
@@ -28,3 +28,6 @@ class Lap(DatabaseBaseClass):
     def __repr__(self):
         return "<Lap(lap id='%d', starting time='%s', finishing time='%s', name='%s', comments='%s')>" \
                % (self.id, self.start_time, self.finish_time, self.name, self.comments)
+
+    def finish_lap(self):
+        self.finish_time = datetime.datetime.utcnow()
