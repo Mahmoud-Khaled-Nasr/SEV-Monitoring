@@ -2,12 +2,12 @@ from typing import List
 
 from models.data_frames.data_frame import DataFrame, GUIInterface
 
-
+# TODO reimplement this class when the new data frames arrives
 class SwitchesDataFrame(DataFrame):
     NUMBER_OF_SWITCHES = 6
 
-    def __init__(self, frame_id: int, value: bytes):
-        super().__init__(frame_id, value)
+    def __init__(self, frame_id: int, frame_value: bytes):
+        super().__init__(frame_id, frame_value)
         # Create list of switches
         self.switches_status: List[bool] = []
         # Evaluate the bits as booleans (switch status)

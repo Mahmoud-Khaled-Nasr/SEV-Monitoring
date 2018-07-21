@@ -2,15 +2,15 @@ from struct import unpack
 
 from models.data_frames.data_frame import DataFrame, GUIInterface
 
-
+# TODO reimplement this class when the new data frames arrives
 class DriverMasterMCDataFrame(DataFrame):
     # A format string to determine how the bytes are parsed
     # > : Big-endian
     # H : unsigned short
     _parse_string = ">HH"
 
-    def __init__(self, frame_id: int, value: bytes):
-        super().__init__(frame_id, value)
+    def __init__(self, frame_id: int, frame_value: bytes):
+        super().__init__(frame_id, frame_value)
         # This function break the data down from bytes to the proper values needed by the class
         # Values are returned in a tuple
         (self.master_motor_current, self.master_motor_speed) \

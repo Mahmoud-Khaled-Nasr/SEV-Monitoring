@@ -70,3 +70,15 @@ class IDs:
     switches_frame_id = 11
     driver_master_mc_frame_id = 1345
     driver_slave_mc_frame_id = 1409
+
+
+class DatabaseTablesNames:
+    DATA_FRAME_TABLE = "data_frames"
+    CURRENT_TABLE = "currents"
+    BUS_VOLTAGE_TABLE = "bus_voltages"
+    TEMPERATURE_TABLE = "temperatures"
+    BATTERY_TABLE = "batteries"
+    LIGHT_TABLE = "lights"
+    SWITCH_TABLE = "switches"
+    DRIVER_MASTER_MC_TABLE = "master_mc"
+    DRIVER_SLAVE_MC_TABLE = "slave_mc"

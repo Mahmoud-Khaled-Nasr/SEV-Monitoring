@@ -4,7 +4,6 @@ from GUI.GUI_interface import GUIInterface
 from input.serial_reader import SerialReader
 from models.data_frames.data_frame import DataFrame
 from models.laps.lap import Lap
-from database import Session
 from definitions import ConnectionTypes
 
 from actions.start_action import StartAction
@@ -14,13 +13,12 @@ from actions.stop_action import StopAction
 
 class Dispatcher(QObject):
 
-    def __init__(self, gui_interface: GUIInterface, serial_reader: SerialReader, database_session: Session):
+    def __init__(self, gui_interface: GUIInterface, serial_reader: SerialReader):
         super(Dispatcher, self).__init__()
         self.gui_interface: GUIInterface = gui_interface
         self.connect_gui_signals()
         self.serial_reader: SerialReader = serial_reader
         self.connect_serial_reader_signals()
-        self.database_session: Session = database_session
         self.current_lap: Lap = None
 
     # Connects gui signals to their slots

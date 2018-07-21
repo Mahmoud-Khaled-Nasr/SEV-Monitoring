@@ -1,20 +1,23 @@
-from struct import unpack
+from sqlalchemy import ForeignKey, Column, Integer
 
 from models.data_frames.data_frame import DataFrame, GUIInterface
+from definitions import DatabaseTablesNames
 
 
 class BusVoltagesDataFrame(DataFrame):
-    # A format string to determine how the bytes are parsed
-    # > : Big-endian
-    # H : unsigned short
-    _parse_string = ">HH"
 
-    def __init__(self, frame_id: int, value: bytes):
-        super().__init__(frame_id, value)
-        # This function break the data down from bytes to the proper values needed by the class
-        # Values are returned in a tuple
-        (self.dc_bus_volt, self.x_volt) \
-            = unpack(self._parse_string, self.frame_value[0:4])
+    __tablename__ = DatabaseTablesNames.BUS_VOLTAGE_TABLE
+    __mapper_args__ = {
+        'polymorphic_identity': DatabaseTablesNames.BUS_VOLTAGE_TABLE
+    }
+
+    id = Column(Integer, ForeignKey(DatabaseTablesNames.DATA_FRAME_TABLE + ".id"), primary_key=True)
+    DC_bus_voltage = Column(Integer, nullable=False)
+
+    def __init__(self, frame_id: int, frame_value: bytes, DC_bus_voltage: int):
+        super().__init__(frame_id, frame_value)
+        self.dc_bus_volt = DC_bus_voltage
+        self.x_volt = 0
 
     # just for showing the data inside the objects in the times of need
     def __repr__(self):
