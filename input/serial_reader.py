@@ -5,7 +5,7 @@ from PyQt5.QtCore import QThread, pyqtSignal
 from serial import Serial, SerialException
 from typing import Callable
 
-from input.data_frames_factory import get_data_frame_size, get_new_data_frame_object
+from input.data_frames_factory import get_data_frame_size, create_data_frame_object
 from models.data_frames.data_frame import DataFrame
 
 
@@ -46,7 +46,7 @@ class SerialReader(QThread):
                 # Get frame data
                 frame_data: bytes = self.__get_frame_data(frame_size)
                 # Create the frame
-                frame_object: DataFrame = get_new_data_frame_object(frame_id, frame_data)
+                frame_object: DataFrame = create_data_frame_object(frame_id, frame_data)
                 # Emit a signal
                 self.signal_receive_serial_data.emit(frame_object)
 
