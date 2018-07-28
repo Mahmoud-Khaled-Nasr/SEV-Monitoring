@@ -1,6 +1,11 @@
 from enum import Enum
 
 
+class CurrentsBaseValues:
+    driver_master_motor_current = 100
+    driver_slave_motor_current = 100
+
+
 class ConnectionTypes(Enum):
     USB = 1
     WIFI = 2
@@ -23,11 +28,11 @@ class Ranges:
     max_battery_volt = (100, 200)
     max_battery_temperature = (100, 200)
 
-    master_motor_current = (100, 200)
-    master_motor_speed = (100, 200)
+    driver_master_motor_current = (100, 200)
+    driver_master_motor_speed = (100, 200)
 
-    slave_motor_current = (100, 200)
-    slave_motor_speed = (100, 200)
+    driver_slave_motor_current = (100, 200)
+    driver_slave_motor_speed = (100, 200)
 
     battery_module_volt = (100, 200)
     battery_module_temperature = (100, 200)
@@ -51,11 +56,11 @@ class Tolerances:
     max_battery_volt = 100
     max_battery_temperature = 100
 
-    master_motor_current = 100
-    master_motor_speed = 100
+    driver_master_motor_current = 100
+    driver_master_motor_speed = 100
 
-    slave_motor_current = 100
-    slave_motor_speed = 100
+    driver_slave_motor_current = 100
+    driver_slave_motor_speed = 100
 
     battery_module_volt = 100
     battery_module_temperature = 100

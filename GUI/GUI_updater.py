@@ -37,11 +37,11 @@ class GUIUpdater:
         self.ranges[self.gui_app.xVolt] = Ranges.x_volt
         self.ranges[self.gui_app.dcBusVolt] = Ranges.dc_bus_volt
         # Master Motor
-        self.ranges[self.gui_app.masterCurrent] = Ranges.master_motor_current
-        self.ranges[self.gui_app.masterSpeed] = Ranges.master_motor_speed
+        self.ranges[self.gui_app.masterCurrent] = Ranges.driver_master_motor_current
+        self.ranges[self.gui_app.masterSpeed] = Ranges.driver_master_motor_speed
         # Slave Motor
-        self.ranges[self.gui_app.slaveCurrent] = Ranges.slave_motor_current
-        self.ranges[self.gui_app.slaveSpeed] = Ranges.slave_motor_speed
+        self.ranges[self.gui_app.slaveCurrent] = Ranges.driver_slave_motor_current
+        self.ranges[self.gui_app.slaveSpeed] = Ranges.driver_slave_motor_speed
         # Battery Modules
         for i in range(1, 15):
             self.ranges[eval("self.gui_app.batteryVolt" + str(i))] = Ranges.battery_module_volt
@@ -65,11 +65,11 @@ class GUIUpdater:
         self.tolerances[self.gui_app.xVolt] = Tolerances.x_volt
         self.tolerances[self.gui_app.dcBusVolt] = Tolerances.dc_bus_volt
         # Master Motor
-        self.tolerances[self.gui_app.masterCurrent] = Tolerances.master_motor_current
-        self.tolerances[self.gui_app.masterSpeed] = Tolerances.master_motor_speed
+        self.tolerances[self.gui_app.masterCurrent] = Tolerances.driver_master_motor_current
+        self.tolerances[self.gui_app.masterSpeed] = Tolerances.driver_master_motor_speed
         # Slave Motor
-        self.tolerances[self.gui_app.slaveCurrent] = Tolerances.slave_motor_current
-        self.tolerances[self.gui_app.slaveSpeed] = Tolerances.slave_motor_speed
+        self.tolerances[self.gui_app.slaveCurrent] = Tolerances.driver_slave_motor_current
+        self.tolerances[self.gui_app.slaveSpeed] = Tolerances.driver_slave_motor_speed
         # Battery Modules
         for i in range(1, 15):
             self.tolerances[eval("self.gui_app.batteryVolt" + str(i))] = Tolerances.battery_module_volt

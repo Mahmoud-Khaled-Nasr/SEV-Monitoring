@@ -43,7 +43,7 @@ def get_data_frame_size(frame_id: int) -> int:
     return frame_size
 
 
-def get_new_data_frame_object(frame_id, frame_value: bytes) -> DataFrame:
+def create_data_frame_object(frame_id, frame_value: bytes) -> DataFrame:
 
     if frame_id == IDs.currents_frame_id:
         parsing_string = "<HHH"
@@ -52,17 +52,19 @@ def get_new_data_frame_object(frame_id, frame_value: bytes) -> DataFrame:
                                  motors_current=motors_current, solar_panels_current=solar_panels_current)
     elif frame_id == IDs.bus_voltages_frame_id:
         parsing_string = "<HH"
-        (DC_bus_voltage, dummy) = unpack(parsing_string, frame_value)
+        (DC_bus_voltage, charge_rate) = unpack(parsing_string, frame_value)
         return BusVoltagesDataFrame(frame_id=frame_id, frame_value=frame_value, DC_bus_voltage=DC_bus_voltage)
+
     elif frame_id == IDs.temperatures_frame_id:
-        parsing_string = "<hhh"
-        (dummy1, solar_panels_temperature, dummy2) = unpack(parsing_string, frame_value)
+        parsing_string = "<h"
+        (solar_panels_temperature) = unpack(parsing_string, frame_value)
         return TemperaturesDataFrame(frame_id=frame_id, frame_value=frame_value,
                                      solar_panels_temperature=solar_panels_temperature)
     elif frame_id in IDs.modules_frame_ids:
         parsing_string = "<Hh"
         (voltage, temperature) = unpack(parsing_string, frame_value)
         return BatteryDataFrame(frame_id=frame_id, frame_value=frame_value)
+
     elif frame_id == IDs.lights_frame_id:
         # TODO check this logic and reimplement this segment when the new data frames arrives
         number_of_lights = 8
@@ -74,6 +76,7 @@ def get_new_data_frame_object(frame_id, frame_value: bytes) -> DataFrame:
             compare_byte = compare_byte << 1
 
         return LightsDataFrame(frame_id=frame_id, frame_value=frame_value)
+
     elif frame_id == IDs.switches_frame_id:
         # TODO check this logic and reimplement this segment when the new data frames arrives
         number_of_switches = 6
@@ -86,11 +89,15 @@ def get_new_data_frame_object(frame_id, frame_value: bytes) -> DataFrame:
             compare_byte = compare_byte << 1
 
         return SwitchesDataFrame(frame_id=frame_id, frame_value=frame_value)
+
     elif frame_id == IDs.driver_master_mc_frame_id:
         # TODO which frame is this?? and reimplement this segment when the new data frames arrives
+        # TODO calculate current from current percentage using costants in definitions
         parsing_string = "<HH"
         return DriverMasterMCDataFrame(frame_id=frame_id, frame_value=frame_value)
+
     elif frame_id == IDs.driver_slave_mc_frame_id:
         # TODO which frame is this?? and reimplement this segment when the new data frames arrives
+        # TODO calculate current from current percentage using constants in definitions
         parsing_string = "<HH"
         return DriverSlaveMCDataFrame(frame_id=frame_id, frame_value=frame_value)
