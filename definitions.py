@@ -2,8 +2,8 @@ from enum import Enum
 
 
 class CurrentsBaseValues:
-    driver_master_motor_current = 100
-    driver_slave_motor_current = 100
+    DRIVER_MASTER_MOTOR_CURRENT = 100
+    DRIVER_SLAVE_MOTOR_CURRENT = 100
 
 
 class ConnectionTypes(Enum):
@@ -17,11 +17,9 @@ class Ranges:
     motors_current = (100, 200)
     solar_panels_current = (100, 200)
 
-    x_volt = (100, 200)
+    charge_rate = (100, 200)
     dc_bus_volt = (100, 200)
 
-    x_temperature = (100, 200)
-    y_temperature = (100, 200)
     solar_panels_temperature = (100, 200)
 
     min_battery_volt = (100, 200)
@@ -45,11 +43,9 @@ class Tolerances:
     motors_current = 100
     solar_panels_current = 100
 
-    x_volt = 100
+    charge_rate = 100
     dc_bus_volt = 100
 
-    x_temperature = 100
-    y_temperature = 100
     solar_panels_temperature = 100
 
     min_battery_volt = 100

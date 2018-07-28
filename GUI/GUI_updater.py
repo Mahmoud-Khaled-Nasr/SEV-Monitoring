@@ -34,7 +34,7 @@ class GUIUpdater:
         self.ranges[self.gui_app.maxBatteryVolt] = Ranges.max_battery_volt
         self.ranges[self.gui_app.maxBatteryTemp] = Ranges.max_battery_temperature
         # Voltages
-        self.ranges[self.gui_app.xVolt] = Ranges.x_volt
+        self.ranges[self.gui_app.xVolt] = Ranges.charge_rate
         self.ranges[self.gui_app.dcBusVolt] = Ranges.dc_bus_volt
         # Master Motor
         self.ranges[self.gui_app.masterCurrent] = Ranges.driver_master_motor_current
@@ -62,7 +62,7 @@ class GUIUpdater:
         self.tolerances[self.gui_app.maxBatteryVolt] = Tolerances.max_battery_volt
         self.tolerances[self.gui_app.maxBatteryTemp] = Tolerances.max_battery_temperature
         # Voltages
-        self.tolerances[self.gui_app.xVolt] = Tolerances.x_volt
+        self.tolerances[self.gui_app.xVolt] = Tolerances.charge_rate
         self.tolerances[self.gui_app.dcBusVolt] = Tolerances.dc_bus_volt
         # Master Motor
         self.tolerances[self.gui_app.masterCurrent] = Tolerances.driver_master_motor_current
