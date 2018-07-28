@@ -1,8 +1,5 @@
 from enum import Enum
 
-class Constants:
-    BASE_MASTER_MOTOR_CURRENT = 100
-    BASE_SLAVE_MOTOR_CURRENT = 100
 
 class ConnectionTypes(Enum):
     USB = 1
