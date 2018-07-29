@@ -18,6 +18,7 @@ class GUIInterface:
         self.update_currents(310, 50, 250)
         self.update_currents(100, 50, 250.5)
         self.update_lights([True, False, True])
+        self.update_switches([False, True, False, True, True, False])
 
     def start_gui(self) -> None:
         # Start the main event loop

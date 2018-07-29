@@ -954,7 +954,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_29.addWidget(self.l7)
         self.horizontalLayout_22.addWidget(self.lights7frame)
         self.lights8frame = QtWidgets.QFrame(self.lightsGB_2)
-        self.lights8frame.setStyleSheet("background-color: #d6cc13;\n"
+        self.lights8frame.setStyleSheet("background-color: #black;\n"
 "border-radius: 15px;\n"
 "")
         self.lights8frame.setFrameShape(QtWidgets.QFrame.StyledPanel)

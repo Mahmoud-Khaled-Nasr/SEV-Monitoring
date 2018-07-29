@@ -123,13 +123,13 @@ class GUIUpdater:
                 # Get the switch label
                 switch_label = eval("self.gui_app.s" + str(index))
                 # Get switch frame
-                switch_frame = eval("self.gui_app.switches" + str(index) + "frame")
+                switch_frame = switch_label.parent()
 
                 if switch_status is True:  # Switch is on
                     # Set label color to black
                     switch_label.setStyleSheet("color: black;")
                     # Set frame color to yellowish
-                    switch_frame.setStyleSheet("background-color: #d6cc13; border-radius: 15px;")
+                    switch_frame.setStyleSheet("background-color: #7fff00; border-radius: 15px;")
 
                 else:  # Switch is off
                     # Set label color to white
@@ -147,13 +147,13 @@ class GUIUpdater:
                 # Get the light label
                 light_label = eval("self.gui_app.l" + str(index))
                 # Get the light frame
-                light_frame = eval("self.gui_app.lights" + str(index) + "frame")
+                light_frame = light_label.parent()
 
                 if light_status is True:  # Light is on
                     # Set label color to black
                     light_label.setStyleSheet("color: black;")
                     # Set frame color to yellowish
-                    light_frame.setStyleSheet("background-color: #d6cc13; border-radius: 15px;")
+                    light_frame.setStyleSheet("background-color: #ffff00; border-radius: 15px;")
 
                 else:  # Light is off
                     # Set label color to white
