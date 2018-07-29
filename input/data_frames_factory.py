@@ -25,28 +25,28 @@ def get_data_frame_size(frame_id: int) -> int:
 
     # Default frame size (for unknown frame IDs)
     frame_size: int = 0
-    # Currents frame
+
     if frame_id == IDs.CURRENTS_FRAME_ID:
         frame_size = 6
-    # Bus Voltages frame
+
     elif frame_id == IDs.BUS_VOLTAGES_FRAME_ID:
         frame_size = 2
-    # Temperatures frame
+
     elif frame_id == IDs.TEMPERATURES_FRAME_ID:
         frame_size = 3
-    # Battery frame
+
     elif frame_id in IDs.BATTERIES_FRAMES_IDS:
         frame_size = 2
-    # Lights frame
+
     elif frame_id == IDs.LIGHTS_FRAME_ID:
         frame_size = 1
-    # Switches frame
+
     elif frame_id == IDs.SWITCHES_FRAME_ID:
         frame_size = 1
-    # Driver Master MC frame
+
     elif frame_id == IDs.DRIVER_MASTER_MC_FRAME_ID:
         frame_size = 8
-    # Slave Master MC frame
+
     elif frame_id == IDs.DRIVER_SLAVE_MC_FRAME_ID:
         frame_size = 8
     else:
@@ -56,64 +56,64 @@ def get_data_frame_size(frame_id: int) -> int:
 
 
 def create_data_frame_object(frame_id, frame_value: bytes) -> DataFrame:
-    # Current data frame
+
     if frame_id == IDs.CURRENTS_FRAME_ID:
         parsing_string = "<HHH"
         (battery_current, motors_current, solar_panels_current) = unpack(parsing_string, frame_value)
         return CurrentsDataFrame(frame_id=frame_id, frame_value=frame_value, battery_current=battery_current,
                                  motors_current=motors_current, solar_panels_current=solar_panels_current)
-    # Bus Voltages data frame
+
     elif frame_id == IDs.BUS_VOLTAGES_FRAME_ID:
         parsing_string = "<HH"
         (DC_bus_voltage, dummy) = unpack(parsing_string, frame_value)
         return BusVoltagesDataFrame(frame_id=frame_id, frame_value=frame_value, DC_bus_voltage=DC_bus_voltage)
-    # Temperatures data frame
+
     elif frame_id == IDs.TEMPERATURES_FRAME_ID:
         parsing_string = "<hhh"
         (dummy1, solar_panels_temperature, dummy2) = unpack(parsing_string, frame_value)
         return TemperaturesDataFrame(frame_id=frame_id, frame_value=frame_value,
                                      solar_panels_temperature=solar_panels_temperature)
-    # Battery data frame
+
     elif frame_id in IDs.BATTERIES_FRAMES_IDS:
         parsing_string = "<Hh"
         (voltage, temperature) = unpack(parsing_string, frame_value)
         return BatteryDataFrame(frame_id=frame_id, frame_value=frame_value)
-    # Lights data frame
+
     elif frame_id == IDs.LIGHTS_FRAME_ID:
-        number_of_lights = 8
-        # Create list of lights
-        lights_status: List[bool] = []
-        # Evaluate the bits as booleans (light status)
-        compare_byte = 0b00000001
-        for i in range(1, number_of_lights + 1):
-            # If the bitwise comparison of the compare byte and the first (and only)
-            # byte in "value" isn't equal to a zero, then the bit is 1 (corresponding to true)
-            lights_status.append(frame_value[0] & compare_byte != 0)
-            # Shift the compare byte to compare the next bit
-            compare_byte = compare_byte << 1
+        # each bit represents the status of one of the lights
+        headlights: bool = 0b00000001 & frame_value[0] != 0
+        tail_lights: bool = 0b00000010 & frame_value[0] != 0
+        left_indicator: bool = 0b00000100 & frame_value[0] != 0
+        right_indicator: bool = 0b00001000 & frame_value[0] != 0
+        high_beam: bool = 0b00010000 & frame_value[0] != 0
+        brake_light: bool = 0b00100000 & frame_value[0] != 0
+        backing_light: bool = 0b01000000 & frame_value[0] != 0
+        daytime_light: bool = 0b10000000 & frame_value[0] != 0
 
-        return LightsDataFrame(frame_id=frame_id, frame_value=frame_value)
-    # Switches data frame
+        return LightsDataFrame(frame_id=frame_id, frame_value=frame_value, headlights=headlights,
+                               tail_lights=tail_lights, left_indicator=left_indicator,
+                               right_indicator=right_indicator, high_beam=high_beam,
+                               brake_light=brake_light, backing_light=backing_light,
+                               daytime_light=daytime_light)
+
     elif frame_id == IDs.SWITCHES_FRAME_ID:
-        number_of_switches = 6
-        # Create list of switches
-        switches_status: List[bool] = []
-        # Evaluate the bits as booleans (switch status)
-        compare_byte = 0b00000001
-        for i in range(1, number_of_switches  + 1):
-            # If the bitwise comparison of the compare byte and the first (and only)
-            # byte in "value" isn't equal to a zero, then the bit is 1 (corresponding to true)
-            switches_status.append(frame_value[0] & compare_byte != 0)
-            # Shift the compare byte to compare the next bit
-            compare_byte = compare_byte << 1
+        # each bit represents the status of one of the switches
+        motor_on: bool = 0b00000001 & frame_value[0] != 0
+        forward: bool = 0b00000010 & frame_value[0] != 0
+        reverse: bool = 0b00000100 & frame_value[0] != 0
+        light_on: bool = 0b00001000 & frame_value[0] != 0
+        warning: bool = 0b00010000 & frame_value[0] != 0
+        daytime: bool = 0b00100000 & frame_value[0] != 0
 
-        return SwitchesDataFrame(frame_id=frame_id, frame_value=frame_value)
-    # Driver Master MC data frame
+        return SwitchesDataFrame(frame_id=frame_id, frame_value=frame_value, motor_on=motor_on,
+                                 forward=forward, reverse=reverse, light_on=light_on, warning=warning,
+                                 daytime=daytime)
+
     elif frame_id == IDs.DRIVER_MASTER_MC_FRAME_ID:
         # TODO reimplement this segment when the new data frames arrives
         parsing_string = "<HH"
         return DriverMasterMCDataFrame(frame_id=frame_id, frame_value=frame_value)
-    # Slave Master MC data frame
+
     elif frame_id == IDs.DRIVER_SLAVE_MC_FRAME_ID:
         # TODO and reimplement this segment when the new data frames arrives
         parsing_string = "<HH"
