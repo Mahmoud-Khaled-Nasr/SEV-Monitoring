@@ -129,7 +129,7 @@ class GUIUpdater:
                     # Set label color to black
                     switch_label.setStyleSheet("color: black;")
                     # Set frame color to yellowish
-                    switch_frame.setStyleSheet("background-color: #7fff00; border-radius: 15px;")
+                    switch_frame.setStyleSheet("background-color: #2eff00; border-radius: 15px;")
 
                 else:  # Switch is off
                     # Set label color to white
