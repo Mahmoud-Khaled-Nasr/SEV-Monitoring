@@ -55,19 +55,23 @@ def create_data_frame_object(frame_id, frame_value: bytes) -> DataFrame:
         (battery_current, motors_current, solar_panels_current) = unpack(parsing_string, frame_value)
         return CurrentsDataFrame(frame_id=frame_id, frame_value=frame_value, battery_current=battery_current,
                                  motors_current=motors_current, solar_panels_current=solar_panels_current)
+
     elif frame_id == DataFramesIDs.BUS_VOLTAGES_FRAME_ID:
         parsing_string = "<HH"
         (DC_bus_voltage, charge_rate) = unpack(parsing_string, frame_value)
         return BusVoltagesDataFrame(frame_id=frame_id, frame_value=frame_value, DC_bus_voltage=DC_bus_voltage)
+
     elif frame_id == DataFramesIDs.TEMPERATURES_FRAME_ID:
         parsing_string = "<h"
         (solar_panels_temperature) = unpack(parsing_string, frame_value)
         return TemperaturesDataFrame(frame_id=frame_id, frame_value=frame_value,
                                      solar_panels_temperature=solar_panels_temperature)
+
     elif frame_id in DataFramesIDs.MODULES_FRAME_IDS:
         parsing_string = "<Hh"
         (voltage, temperature) = unpack(parsing_string, frame_value)
         return BatteryDataFrame(frame_id=frame_id, frame_value=frame_value)
+
     elif frame_id == DataFramesIDs.LIGHTS_FRAME_ID:
         # each bit represents the status of one of the lights
         headlights: bool = 0b00000001 & frame_value[0] != 0
@@ -103,6 +107,7 @@ def create_data_frame_object(frame_id, frame_value: bytes) -> DataFrame:
         # TODO calculate current from current percentage using costants in definitions
         parsing_string = "<HH"
         return DriverMasterMCDataFrame(frame_id=frame_id, frame_value=frame_value)
+
     elif frame_id == DataFramesIDs.DRIVER_SLAVE_MC_FRAME_ID:
         # TODO which frame is this?? and reimplement this segment when the new data frames arrives
         # TODO calculate current from current percentage using constants in definitions
