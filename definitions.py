@@ -62,14 +62,14 @@ class Tolerances:
 
 
 class IDs:
-    currents_frame_id = 320
-    bus_voltages_frame_id = 272
-    temperatures_frame_id = 368
-    modules_frame_ids = [640, 641, 642, 643, 644, 645, 646, 647, 648, 649, 656, 657, 658, 659]
-    lights_frame_id = 10
-    switches_frame_id = 11
-    driver_master_mc_frame_id = 1345
-    driver_slave_mc_frame_id = 1409
+    CURRENTS_FRAME_ID = 320
+    BUS_VOLTAGES_FRAME_ID = 272
+    TEMPERATURES_FRAME_ID = 368
+    BATTERIES_FRAMES_IDS = [640, 641, 642, 643, 644, 645, 646, 647, 648, 649, 656, 657, 658, 659]
+    LIGHTS_FRAME_ID = 10
+    SWITCHES_FRAME_ID = 11
+    DRIVER_MASTER_MC_FRAME_ID = 1345
+    DRIVER_SLAVE_MC_FRAME_ID = 1409
 
 
 class DatabaseTablesNames:

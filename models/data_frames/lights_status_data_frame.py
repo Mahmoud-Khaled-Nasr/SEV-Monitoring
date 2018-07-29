@@ -2,31 +2,35 @@ from models.data_frames.data_frame import DataFrame, GUIInterface
 from typing import List
 
 
-# TODO reimplement this class when the new data frames arrives
 class LightsDataFrame(DataFrame):
-    NUMBER_OF_LIGHTS = 8
+    # TODO reimplement this class when the new data frames arrives
+    def __init__(self, frame_id: int, frame_value: bytes, headlights: bool, tail_lights: bool,
+                 left_indicator: bool, right_indicator: bool, high_beam: bool, brake_light: bool,
+                 backing_light: bool, daytime_light: bool):
 
-    def __init__(self, frame_id: int, frame_value: bytes):
         super().__init__(frame_id, frame_value)
-        # Create list of lights
-        self.lights_status: List[bool] = []
-        # Evaluate the bits as booleans (light status)
-        compare_byte = 0b00000001
-        for i in range(1, self.NUMBER_OF_LIGHTS + 1):
 
-            # If the bitwise comparison of the compare byte and the first (and only)
-            # byte in "value" isn't equal to a zero, then the bit is 1 (corresponding to true)
-            self.lights_status.append(value[0] & compare_byte != 0)
-            # Shift the compare byte to compare the next bit
-            compare_byte = compare_byte << 1
+        self.headlights: bool = headlights
+        self.tail_lights: bool = tail_lights
+        self.left_indicator: bool = left_indicator
+        self.right_indicator: bool = right_indicator
+        self.high_beam: bool = high_beam
+        self.brake_light: bool = brake_light
+        self.backing_light: bool = backing_light
+        self.daytime_light: bool = daytime_light
 
     # just for showing the data inside the objects in the times of need
     def __repr__(self):
         return "<Lights Data Frame( frame ID='%d', frame value='%s', headlights='%s', tail lights='%s'" \
                ", left indicator='%s', right indicator='%s', high beam='%s', brake light='%s', " \
                "backing light='%s', daytime light='%s')>" \
-               % ((self.frame_id, self.frame_value) + tuple(self.lights_status))
+               % (self.frame_id, self.frame_value, self.headlights, self.tail_lights, self.left_indicator,
+                  self.right_indicator, self.high_beam, self.brake_light, self.backing_light,
+                  self.daytime_light)
 
     # Updates the gui values
     def update_gui(self, gui_interface: GUIInterface) -> None:
-        gui_interface.update_lights(lights_status=self.lights_status)
+        lights_status: List[bool] = [self.headlights, self.tail_lights, self.left_indicator,
+                                     self.right_indicator, self.high_beam, self.brake_light,
+                                     self.backing_light, self.daytime_light]
+        gui_interface.update_lights(lights_status=lights_status)
