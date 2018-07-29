@@ -1,3 +1,4 @@
+import database
 from dispatcher import Dispatcher
 from GUI.GUI_interface import GUIInterface
 from input.serial_reader import SerialReader

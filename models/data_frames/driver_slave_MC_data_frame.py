@@ -2,6 +2,7 @@ from struct import unpack
 
 from models.data_frames.data_frame import DataFrame, GUIInterface
 
+
 # TODO reimplement this class when the new data frames arrives
 class DriverSlaveMCDataFrame(DataFrame):
     # A format string to determine how the bytes are parsed
