@@ -24,7 +24,7 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         MainWindow.setFont(font)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("sev-cut.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("GUI/sev-cut.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet("background-color: white")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
