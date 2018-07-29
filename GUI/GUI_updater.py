@@ -22,58 +22,54 @@ class GUIUpdater:
     # Private method: Initializes the ranges dictionary
     def __init_ranges_dict(self) -> None:
         # Currents
-        self.ranges[self.gui_app.batteryCurrent] = Ranges.battery_current
-        self.ranges[self.gui_app.motorsCurrent] = Ranges.motors_current
-        self.ranges[self.gui_app.spanelsCurrent] = Ranges.solar_panels_current
+        self.ranges[self.gui_app.batteryCurrent] = Ranges.BATTERY_CURRENT
+        self.ranges[self.gui_app.motorsCurrent] = Ranges.MOTORS_CURRENT
+        self.ranges[self.gui_app.spanelsCurrent] = Ranges.SOLAR_PANELS_CURRENT
         # Temperatures
-        self.ranges[self.gui_app.xTemp] = Ranges.x_temperature
-        self.ranges[self.gui_app.yTemp] = Ranges.y_temperature
-        self.ranges[self.gui_app.spanelsTemp] = Ranges.solar_panels_temperature
+        self.ranges[self.gui_app.spanelsTemp] = Ranges.SOLAR_PANELS_TEMPERATURE
         # Battery Data
-        self.ranges[self.gui_app.minBatteryVolt] = Ranges.min_battery_volt
-        self.ranges[self.gui_app.maxBatteryVolt] = Ranges.max_battery_volt
-        self.ranges[self.gui_app.maxBatteryTemp] = Ranges.max_battery_temperature
+        self.ranges[self.gui_app.minBatteryVolt] = Ranges.MIN_BATTERY_VOLT
+        self.ranges[self.gui_app.maxBatteryVolt] = Ranges.MAX_BATTERY_VOLT
+        self.ranges[self.gui_app.maxBatteryTemp] = Ranges.MAX_BATTERY_TEMPERATURE
         # Voltages
-        self.ranges[self.gui_app.xVolt] = Ranges.x_volt
-        self.ranges[self.gui_app.dcBusVolt] = Ranges.dc_bus_volt
+        self.ranges[self.gui_app.chargeRate] = Ranges.CHARGE_RATE
+        self.ranges[self.gui_app.dcBusVolt] = Ranges.DC_BUS_VOLT
         # Master Motor
-        self.ranges[self.gui_app.masterCurrent] = Ranges.master_motor_current
-        self.ranges[self.gui_app.masterSpeed] = Ranges.master_motor_speed
+        self.ranges[self.gui_app.masterCurrent] = Ranges.DRIVER_MASTER_MOTOR_CURRENT
+        self.ranges[self.gui_app.masterSpeed] = Ranges.DRIVER_MASTER_MOTOR_SPEED
         # Slave Motor
-        self.ranges[self.gui_app.slaveCurrent] = Ranges.slave_motor_current
-        self.ranges[self.gui_app.slaveSpeed] = Ranges.slave_motor_speed
+        self.ranges[self.gui_app.slaveCurrent] = Ranges.DRIVER_SLAVE_MOTOR_CURRENT
+        self.ranges[self.gui_app.slaveSpeed] = Ranges.DRIVER_SLAVE_MOTOR_SPEED
         # Battery Modules
         for i in range(1, 15):
-            self.ranges[eval("self.gui_app.batteryVolt" + str(i))] = Ranges.battery_module_volt
-            self.ranges[eval("self.gui_app.batteryTemp" + str(i))] = Ranges.battery_module_temperature
+            self.ranges[eval("self.gui_app.batteryVolt" + str(i))] = Ranges.BATTERY_MODULE_VOLT
+            self.ranges[eval("self.gui_app.batteryTemp" + str(i))] = Ranges.BATTERY_MODULE_TEMPERATURE
 
     # Private method: Initializes the tolerances dictionary
     def __init_tolerances_dict(self) -> None:
         # Currents
-        self.tolerances[self.gui_app.batteryCurrent] = Tolerances.battery_current
-        self.tolerances[self.gui_app.motorsCurrent] = Tolerances.motors_current
-        self.tolerances[self.gui_app.spanelsCurrent] = Tolerances.solar_panels_current
+        self.tolerances[self.gui_app.batteryCurrent] = Tolerances.BATTERY_CURRENT
+        self.tolerances[self.gui_app.motorsCurrent] = Tolerances.MOTORS_CURRENT
+        self.tolerances[self.gui_app.spanelsCurrent] = Tolerances.SOLAR_PANELS_CURRENT
         # Temperatures
-        self.tolerances[self.gui_app.xTemp] = Tolerances.x_temperature
-        self.tolerances[self.gui_app.yTemp] = Tolerances.y_temperature
-        self.tolerances[self.gui_app.spanelsTemp] = Tolerances.solar_panels_temperature
+        self.tolerances[self.gui_app.spanelsTemp] = Tolerances.SOLAR_PANELS_TEMPERATURE
         # Battery Data
-        self.tolerances[self.gui_app.minBatteryVolt] = Tolerances.min_battery_volt
-        self.tolerances[self.gui_app.maxBatteryVolt] = Tolerances.max_battery_volt
-        self.tolerances[self.gui_app.maxBatteryTemp] = Tolerances.max_battery_temperature
+        self.tolerances[self.gui_app.minBatteryVolt] = Tolerances.MIN_BATTERY_VOLT
+        self.tolerances[self.gui_app.maxBatteryVolt] = Tolerances.MAX_BATTERY_VOLT
+        self.tolerances[self.gui_app.maxBatteryTemp] = Tolerances.MAX_BATTERY_TEMPERATURE
         # Voltages
-        self.tolerances[self.gui_app.xVolt] = Tolerances.x_volt
-        self.tolerances[self.gui_app.dcBusVolt] = Tolerances.dc_bus_volt
+        self.tolerances[self.gui_app.chargeRate] = Tolerances.CHARGE_RATE
+        self.tolerances[self.gui_app.dcBusVolt] = Tolerances.DC_BUS_VOLT
         # Master Motor
-        self.tolerances[self.gui_app.masterCurrent] = Tolerances.master_motor_current
-        self.tolerances[self.gui_app.masterSpeed] = Tolerances.master_motor_speed
+        self.tolerances[self.gui_app.masterCurrent] = Tolerances.DRIVER_MASTER_MOTOR_CURRENT
+        self.tolerances[self.gui_app.masterSpeed] = Tolerances.DRIVER_MASTER_MOTOR_SPEED
         # Slave Motor
-        self.tolerances[self.gui_app.slaveCurrent] = Tolerances.slave_motor_current
-        self.tolerances[self.gui_app.slaveSpeed] = Tolerances.slave_motor_speed
+        self.tolerances[self.gui_app.slaveCurrent] = Tolerances.DRIVER_SLAVE_MOTOR_CURRENT
+        self.tolerances[self.gui_app.slaveSpeed] = Tolerances.DRIVER_SLAVE_MOTOR_SPEED
         # Battery Modules
         for i in range(1, 15):
-            self.tolerances[eval("self.gui_app.batteryVolt" + str(i))] = Tolerances.battery_module_volt
-            self.tolerances[eval("self.gui_app.batteryTemp" + str(i))] = Tolerances.battery_module_temperature
+            self.tolerances[eval("self.gui_app.batteryVolt" + str(i))] = Tolerances.BATTERY_MODULE_VOLT
+            self.tolerances[eval("self.gui_app.batteryTemp" + str(i))] = Tolerances.BATTERY_MODULE_TEMPERATURE
 
     # Private method: Checks if a value is in range for a certain type of data
     def __is_in_range(self, data_label: QLabel, value: float) -> bool:

@@ -31,17 +31,15 @@ class GUIInterface:
         self.gui_updater.update_label(self.gui_app.spanelsCurrent, solar_panels_current)
 
     # Updates the voltages on the GUI
-    def update_volts(self, dc_bus_volt: float, xVolt: float) -> None:
+    def update_volts(self, dc_bus_volt: float, charge_rate: float) -> None:
         # Updates the labels with the given values
         self.gui_updater.update_label(self.gui_app.dcBusVolt, dc_bus_volt)
-        self.gui_updater.update_label(self.gui_app.xVolt, xVolt)
+        self.gui_updater.update_label(self.gui_app.chargeRate, charge_rate)
 
     # Updates the temperatures on the GUI
-    def update_temperatures(self, xTemp: float, solar_panels_temperature: float, yTemp: float) -> None:
+    def update_temperatures(self,solar_panels_temperature: float) -> None:
         # Updates the labels with the given values
-        self.gui_updater.update_label(self.gui_app.xTemp, xTemp)
         self.gui_updater.update_label(self.gui_app.spanelsTemp, solar_panels_temperature)
-        self.gui_updater.update_label(self.gui_app.yTemp, yTemp)
 
     # Updates the Master Motor MC Data on the GUI
     def update_master_mc(self, master_current: float, master_speed: float) -> None:
