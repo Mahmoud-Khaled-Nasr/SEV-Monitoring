@@ -69,28 +69,35 @@ def create_data_frame_object(frame_id, frame_value: bytes) -> DataFrame:
         (voltage, temperature) = unpack(parsing_string, frame_value)
         return BatteryDataFrame(frame_id=frame_id, frame_value=frame_value)
     elif frame_id == DataFramesIDs.LIGHTS_FRAME_ID:
-        # TODO check this logic and reimplement this segment when the new data frames arrives
-        number_of_lights = 8
-        lights_status = []
-        # Evaluate the bits as booleans (light status)
-        compare_byte = 0b00000001
-        for i in range(1, number_of_lights + 1):
-            lights_status[i] = frame_value[0] & compare_byte
-            compare_byte = compare_byte << 1
+        # each bit represents the status of one of the lights
+        headlights: bool = 0b00000001 & frame_value[0] != 0
+        tail_lights: bool = 0b00000010 & frame_value[0] != 0
+        left_indicator: bool = 0b00000100 & frame_value[0] != 0
+        right_indicator: bool = 0b00001000 & frame_value[0] != 0
+        high_beam: bool = 0b00010000 & frame_value[0] != 0
+        brake_light: bool = 0b00100000 & frame_value[0] != 0
+        backing_light: bool = 0b01000000 & frame_value[0] != 0
+        daytime_light: bool = 0b10000000 & frame_value[0] != 0
 
-        return LightsDataFrame(frame_id=frame_id, frame_value=frame_value)
+        return LightsDataFrame(frame_id=frame_id, frame_value=frame_value, headlights=headlights,
+                               tail_lights=tail_lights, left_indicator=left_indicator,
+                               right_indicator=right_indicator, high_beam=high_beam,
+                               brake_light=brake_light, backing_light=backing_light,
+                               daytime_light=daytime_light)
+
     elif frame_id == DataFramesIDs.SWITCHES_FRAME_ID:
-        # TODO check this logic and reimplement this segment when the new data frames arrives
-        number_of_switches = 6
-        # Create list of switches
-        switches_status = []
-        # Evaluate the bits as booleans (switch status)
-        compare_byte = 0b00000001
-        for i in range(1, number_of_switches + 1):
-            switches_status[i] = frame_value[0] & compare_byte
-            compare_byte = compare_byte << 1
+        # each bit represents the status of one of the switches
+        motor_on: bool = 0b00000001 & frame_value[0] != 0
+        forward: bool = 0b00000010 & frame_value[0] != 0
+        reverse: bool = 0b00000100 & frame_value[0] != 0
+        light_on: bool = 0b00001000 & frame_value[0] != 0
+        warning: bool = 0b00010000 & frame_value[0] != 0
+        daytime: bool = 0b00100000 & frame_value[0] != 0
 
-        return SwitchesDataFrame(frame_id=frame_id, frame_value=frame_value)
+        return SwitchesDataFrame(frame_id=frame_id, frame_value=frame_value, motor_on=motor_on,
+                                 forward=forward, reverse=reverse, light_on=light_on, warning=warning,
+                                 daytime=daytime)
+
     elif frame_id == DataFramesIDs.DRIVER_MASTER_MC_FRAME_ID:
         # TODO which frame is this?? and reimplement this segment when the new data frames arrives
         # TODO calculate current from current percentage using costants in definitions
