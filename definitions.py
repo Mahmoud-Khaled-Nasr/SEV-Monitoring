@@ -1,78 +1,83 @@
 from enum import Enum
 
 
+# Motors currents base values to convert read percentages to absolute values
 class CurrentsBaseValues:
     DRIVER_MASTER_MOTOR_CURRENT = 100
     DRIVER_SLAVE_MOTOR_CURRENT = 100
 
 
+# Types of connections from the car to the PC
 class ConnectionTypes(Enum):
     USB = 1
     WIFI = 2
 
 
 # Normal ranges for all types of data (min, max)
+# Values outside the ranges are highlighted in the GUI
 class Ranges:
-    battery_current = (100, 200)
-    motors_current = (100, 200)
-    solar_panels_current = (100, 200)
+    BATTERY_CURRENT = (100, 200)
+    MOTORS_CURRENT = (100, 200)
+    SOLAR_PANELS_CURRENT = (100, 200)
 
-    charge_rate = (100, 200)
-    dc_bus_volt = (100, 200)
+    CHARGE_RATE = (100, 200)
+    DC_BUS_VOLT = (100, 200)
 
-    solar_panels_temperature = (100, 200)
+    SOLAR_PANELS_TEMPERATURE = (100, 200)
 
-    min_battery_volt = (100, 200)
-    max_battery_volt = (100, 200)
-    max_battery_temperature = (100, 200)
+    MIN_BATTERY_VOLT = (100, 200)
+    MAX_BATTERY_VOLT = (100, 200)
+    MAX_BATTERY_TEMPERATURE = (100, 200)
 
-    driver_master_motor_current = (100, 200)
-    driver_master_motor_speed = (100, 200)
+    DRIVER_MASTER_MOTOR_CURRENT = (100, 200)
+    DRIVER_MASTER_MOTOR_SPEED = (100, 200)
 
-    driver_slave_motor_current = (100, 200)
-    driver_slave_motor_speed = (100, 200)
+    DRIVER_SLAVE_MOTOR_CURRENT = (100, 200)
+    DRIVER_SLAVE_MOTOR_SPEED = (100, 200)
 
-    battery_module_volt = (100, 200)
-    battery_module_temperature = (100, 200)
+    BATTERY_MODULE_VOLT = (100, 200)
+    BATTERY_MODULE_TEMPERATURE = (100, 200)
 
 
 # Tolerance for all types of data
 # Only changes beyond the tolerance are shown on the gui
 class Tolerances:
-    battery_current = 100
-    motors_current = 100
-    solar_panels_current = 100
+    BATTERY_CURRENT = 100
+    MOTORS_CURRENT = 100
+    SOLAR_PANELS_CURRENT = 100
 
-    charge_rate = 100
-    dc_bus_volt = 100
+    CHARGE_RATE = 100
+    DC_BUS_VOLT = 100
 
-    solar_panels_temperature = 100
+    SOLAR_PANELS_TEMPERATURE = 100
 
-    min_battery_volt = 100
-    max_battery_volt = 100
-    max_battery_temperature = 100
+    MIN_BATTERY_VOLT = 100
+    MAX_BATTERY_VOLT = 100
+    MAX_BATTERY_TEMPERATURE = 100
 
-    driver_master_motor_current = 100
-    driver_master_motor_speed = 100
+    DRIVER_MASTER_MOTOR_CURRENT = 100
+    DRIVER_MASTER_MOTOR_SPEED = 100
 
-    driver_slave_motor_current = 100
-    driver_slave_motor_speed = 100
+    DRIVER_SLAVE_MOTOR_CURRENT = 100
+    DRIVER_SLAVE_MOTOR_SPEED = 100
 
-    battery_module_volt = 100
-    battery_module_temperature = 100
-
-
-class IDs:
-    currents_frame_id = 320
-    bus_voltages_frame_id = 272
-    temperatures_frame_id = 368
-    modules_frame_ids = [640, 641, 642, 643, 644, 645, 646, 647, 648, 649, 656, 657, 658, 659]
-    lights_frame_id = 10
-    switches_frame_id = 11
-    driver_master_mc_frame_id = 1345
-    driver_slave_mc_frame_id = 1409
+    BATTERY_MODULE_VOLT = 100
+    BATTERY_MODULE_TEMPERATURE = 100
 
 
+# Data frames ids in decimal form
+class DataFramesIDs:
+    CURRENTS_FRAME_ID = 320
+    BUS_VOLTAGES_FRAME_ID = 272
+    TEMPERATURES_FRAME_ID = 368
+    MODULES_FRAME_IDS = [640, 641, 642, 643, 644, 645, 646, 647, 648, 649, 656, 657, 658, 659]
+    LIGHTS_FRAME_ID = 10
+    SWITCHES_FRAME_ID = 11
+    DRIVER_MASTER_MC_FRAME_ID = 1345
+    DRIVER_SLAVE_MC_FRAME_ID = 1409
+
+
+# Names for the database tables of data frames
 class DatabaseTablesNames:
     DATA_FRAME_TABLE = "data_frames"
     CURRENT_TABLE = "currents"
