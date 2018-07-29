@@ -2676,7 +2676,7 @@ class Ui_MainWindow(object):
         self.slaveGB_2.setTitle(_translate("MainWindow", "Driver Slave MC"))
         self.label_91.setText(_translate("MainWindow", "Slave Motor Current:"))
         self.slaveCurrent.setText(_translate("MainWindow", "25.25"))
-        self.label_92.setText(_translate("MainWindow", "%"))
+        self.label_92.setText(_translate("MainWindow", "A"))
         self.label_93.setText(_translate("MainWindow", "Slave Motor Speed:"))
         self.slaveSpeed.setText(_translate("MainWindow", "25.25"))
         self.label_94.setText(_translate("MainWindow", "m/s"))
