@@ -7,6 +7,7 @@
 # Qt Designer
 # Begin
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -990,7 +991,7 @@ class Ui_MainWindow(object):
         self.switchesGB_2.setCheckable(False)
         self.switchesGB_2.setObjectName("switchesGB_2")
         self.horizontalLayout_21 = QtWidgets.QHBoxLayout(self.switchesGB_2)
-        self.horizontalLayout_21.setContentsMargins(-1, 3, 20, 7)
+        self.horizontalLayout_21.setContentsMargins(-1, 3, 9, 7)
         self.horizontalLayout_21.setSpacing(20)
         self.horizontalLayout_21.setObjectName("horizontalLayout_21")
         self.switches3frame = QtWidgets.QFrame(self.switchesGB_2)
@@ -2792,6 +2793,7 @@ class Ui_MainWindow(object):
         self.batteryTemp14.setText(_translate("MainWindow", "25.25"))
         self.label_204.setText(_translate("MainWindow", "°C"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.batteries_tab), _translate("MainWindow", "Batteries Details"))
+
 
 # End
 
