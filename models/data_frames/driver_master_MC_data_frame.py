@@ -25,5 +25,5 @@ class DriverMasterMCDataFrame(DataFrame):
 
     # Updates the gui values
     def update_gui(self, gui_interface: GUIInterface) -> None:
-        gui_interface.update_master_mc(master_current=self.master_motor_current,
-                                       master_speed=self.master_motor_speed)
+        gui_interface.update_master_motor(master_motor_current=self.master_motor_current,
+                                          master_motor_speed=self.master_motor_speed)

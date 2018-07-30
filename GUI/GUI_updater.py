@@ -35,11 +35,11 @@ class GUIUpdater:
         self.ranges[self.gui_app.chargeRate] = Ranges.CHARGE_RATE
         self.ranges[self.gui_app.dcBusVolt] = Ranges.DC_BUS_VOLT
         # Master Motor
-        self.ranges[self.gui_app.masterCurrent] = Ranges.DRIVER_MASTER_MOTOR_CURRENT
-        self.ranges[self.gui_app.masterSpeed] = Ranges.DRIVER_MASTER_MOTOR_SPEED
+        self.ranges[self.gui_app.masterCurrent] = Ranges.MASTER_MOTOR_CURRENT
+        self.ranges[self.gui_app.masterSpeed] = Ranges.MASTER_MOTOR_SPEED
         # Slave Motor
-        self.ranges[self.gui_app.slaveCurrent] = Ranges.DRIVER_SLAVE_MOTOR_CURRENT
-        self.ranges[self.gui_app.slaveSpeed] = Ranges.DRIVER_SLAVE_MOTOR_SPEED
+        self.ranges[self.gui_app.slaveCurrent] = Ranges.SLAVE_MOTOR_CURRENT
+        self.ranges[self.gui_app.slaveSpeed] = Ranges.SLAVE_MOTOR_SPEED
         # Battery Modules
         for i in range(1, 15):
             self.ranges[eval("self.gui_app.batteryVolt" + str(i))] = Ranges.BATTERY_MODULE_VOLT
@@ -61,11 +61,11 @@ class GUIUpdater:
         self.tolerances[self.gui_app.chargeRate] = Tolerances.CHARGE_RATE
         self.tolerances[self.gui_app.dcBusVolt] = Tolerances.DC_BUS_VOLT
         # Master Motor
-        self.tolerances[self.gui_app.masterCurrent] = Tolerances.DRIVER_MASTER_MOTOR_CURRENT
-        self.tolerances[self.gui_app.masterSpeed] = Tolerances.DRIVER_MASTER_MOTOR_SPEED
+        self.tolerances[self.gui_app.masterCurrent] = Tolerances.MASTER_MOTOR_CURRENT
+        self.tolerances[self.gui_app.masterSpeed] = Tolerances.MASTER_MOTOR_SPEED
         # Slave Motor
-        self.tolerances[self.gui_app.slaveCurrent] = Tolerances.DRIVER_SLAVE_MOTOR_CURRENT
-        self.tolerances[self.gui_app.slaveSpeed] = Tolerances.DRIVER_SLAVE_MOTOR_SPEED
+        self.tolerances[self.gui_app.slaveCurrent] = Tolerances.SLAVE_MOTOR_CURRENT
+        self.tolerances[self.gui_app.slaveSpeed] = Tolerances.SLAVE_MOTOR_SPEED
         # Battery Modules
         for i in range(1, 15):
             self.tolerances[eval("self.gui_app.batteryVolt" + str(i))] = Tolerances.BATTERY_MODULE_VOLT
@@ -153,7 +153,7 @@ class GUIUpdater:
                     # Set label color to black
                     light_label.setStyleSheet("color: black;")
                     # Set frame color to yellowish
-                    light_frame.setStyleSheet("background-color: #ffff00; border-radius: 15px;")
+                    light_frame.setStyleSheet("background-color: #2eff00; border-radius: 15px;")
 
                 else:  # Light is off
                     # Set label color to white
