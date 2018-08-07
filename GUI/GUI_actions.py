@@ -60,7 +60,7 @@ class GUIActions(QObject):
             self.pause_continue_button_mode = ButtonModes.PAUSE
             self.gui_app.pause_continue_button.setText("Pause")
             # Set the pause signal
-            self.gui_updater.set_paused(True)
+            self.gui_updater.set_paused(False)
 
     # Private method: Connects the buttons clicks to their action
     def __set_button_signals_connections(self) -> None:
