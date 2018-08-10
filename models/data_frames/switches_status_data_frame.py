@@ -1,10 +1,26 @@
 from typing import List
 
+from sqlalchemy import ForeignKey, Column, Integer, Boolean
+
 from models.data_frames.data_frame import DataFrame, GUIInterface
+from definitions import DatabaseTablesNames
 
 
-# TODO reimplement this class when the new data frames arrives
 class SwitchesDataFrame(DataFrame):
+
+    __tablename__ = DatabaseTablesNames.SWITCH_TABLE
+    __mapper_args__ = {
+        'polymorphic_identity': DatabaseTablesNames.SWITCH_TABLE
+    }
+
+    id = Column(Integer, ForeignKey(DatabaseTablesNames.DATA_FRAME_TABLE + ".id"), primary_key=True)
+    motor_on = Column(Boolean, nullable=False)
+    forward = Column(Boolean, nullable=False)
+    reverse = Column(Boolean, nullable=False)
+    light_on = Column(Boolean, nullable=False)
+    warning = Column(Boolean, nullable=False)
+    daytime = Column(Boolean, nullable=False)
+
     def __init__(self, frame_id: int, frame_value: bytes, motor_on: bool, forward: bool,
                  reverse: bool, light_on: bool, warning: bool, daytime: bool):
 

@@ -23,8 +23,11 @@ class SerialReader(QThread):
         self.COM: str = com_port
         self.baud_rate: int = baud_rate
         self.serial: Serial = None
+        # TODO test the idea of boolean
+        self.operate: bool = True
 
     def run(self):
+        self.operate = True
         try:
             print("reading started")  # For testing
             self.serial = Serial(port=self.COM, baudrate=self.baud_rate)
@@ -34,10 +37,10 @@ class SerialReader(QThread):
             else:
                 print("the port is not open")
             # serial will signal the micro controller to start sending the data
-            time.sleep(5)
+            time.sleep(3)
             self.serial.write(self.STARTING_SEQUENCE)
             # Reading loop
-            while True:
+            while self.operate:
                 # Get frame id
                 frame_id: int = self.__get_frame_id()
                 print(frame_id)
@@ -49,6 +52,14 @@ class SerialReader(QThread):
                 frame_object: DataFrame = create_data_frame_object(frame_id, frame_data)
                 # Emit a signal
                 self.signal_receive_serial_data.emit(frame_object)
+
+            # Check that the serial object was successfully created
+            if self.serial:
+                # serial will signal the micro controller to stop sending the data
+                self.serial.write(self.TERMINATING_SEQUENCE)
+                # Close the port
+                self.serial.close()
+            print("reading stopped")  # For testing
 
         except SerialException:
             # serial object wasn't successfully created
@@ -66,15 +77,7 @@ class SerialReader(QThread):
         return self.serial.read(frame_size)
 
     def stop(self):
-        # Check that the serial object was successfully created
-        if self.serial:
-            # serial will signal the micro controller to stop sending the data
-            self.serial.write(self.TERMINATING_SEQUENCE)
-            # Close the port
-            self.serial.close()
-        self.quit()  # Stops executing the thread
-        self.wait()  # Ensures successful quit to avoid problems on restarting
-        print("reading stopped")  # For testing
+        self.operate = False
 
     def connect_receive_data_signal(self, receive_data_slot: Callable):
         self.signal_receive_serial_data.connect(receive_data_slot)

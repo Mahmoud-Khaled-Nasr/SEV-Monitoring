@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, scoped_session
+from sqlalchemy.orm import sessionmaker
 
 
 DatabaseBaseClass = declarative_base()
@@ -12,6 +12,8 @@ from models.data_frames.currents_data_frame import CurrentsDataFrame
 from models.data_frames.bus_voltages_data_frame import BusVoltagesDataFrame
 from models.data_frames.tempratures_data_frame import TemperaturesDataFrame
 from models.data_frames.battery_data_frame import BatteryDataFrame
+from models.data_frames.lights_status_data_frame import LightsDataFrame
+from models.data_frames.switches_status_data_frame import SwitchesDataFrame
 from models.laps.lap import Lap
 
 # Database initialization
@@ -20,4 +22,6 @@ print(database_engine)
 
 Session = sessionmaker(bind=database_engine)
 
-database_session: Session = Session()
+from database.insert_data_frame import InsertDataFrames
+
+insert_data_frames = InsertDataFrames()

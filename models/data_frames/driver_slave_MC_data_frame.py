@@ -12,8 +12,6 @@ class DriverSlaveMCDataFrame(DataFrame):
 
     def __init__(self, frame_id: int, frame_value: bytes):
         super().__init__(frame_id, frame_value)
-        # This function break the data down from bytes to the proper values needed by the class
-        # Values are returned in a tuple
         (self.slave_motor_current, self.slave_motor_speed) \
             = unpack(self._parse_string, self.frame_value[0:4])
 
