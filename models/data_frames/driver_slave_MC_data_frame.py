@@ -23,5 +23,5 @@ class DriverSlaveMCDataFrame(DataFrame):
 
 # Updates the gui values
     def update_gui(self, gui_interface: GUIInterface) -> None:
-        gui_interface.update_slave_mc(slave_current=self.slave_motor_current,
-                                      slave_speed=self.slave_motor_speed)
+        gui_interface.update_slave_motor(slave_motor_current=self.slave_motor_current,
+                                         slave_motor_speed=self.slave_motor_speed)

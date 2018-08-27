@@ -18,6 +18,7 @@ class GUIInterface:
         self.update_currents(310, 50, 250)
         self.update_currents(100, 50, 250.5)
         self.update_lights([True, False, True])
+        self.update_switches([False, True, False, True, True, False])
 
     def start_gui(self) -> None:
         # Start the main event loop
@@ -41,17 +42,17 @@ class GUIInterface:
         # Updates the labels with the given values
         self.gui_updater.update_label(self.gui_app.spanelsTemp, solar_panels_temperature)
 
-    # Updates the Master Motor MC Data on the GUI
-    def update_master_mc(self, master_current: float, master_speed: float) -> None:
+    # Updates the Master Motor Data on the GUI
+    def update_master_motor(self, master_motor_current: float, master_motor_speed: float) -> None:
         # Updates the labels with the given values
-        self.gui_updater.update_label(self.gui_app.masterCurrent, master_current)
-        self.gui_updater.update_label(self.gui_app.masterSpeed, master_speed)
+        self.gui_updater.update_label(self.gui_app.masterCurrent, master_motor_current)
+        self.gui_updater.update_label(self.gui_app.masterSpeed, master_motor_speed)
 
-    # Updates the Slave Motor MC Data on the GUI
-    def update_slave_mc(self, slave_current: float, slave_speed: float) -> None:
+    # Updates the Slave Motor Data on the GUI
+    def update_slave_motor(self, slave_motor_current: float, slave_motor_speed: float) -> None:
         # Updates the labels with the given values
-        self.gui_updater.update_label(self.gui_app.slaveCurrent, slave_current)
-        self.gui_updater.update_label(self.gui_app.slaveSpeed, slave_speed)
+        self.gui_updater.update_label(self.gui_app.slaveCurrent, slave_motor_current)
+        self.gui_updater.update_label(self.gui_app.slaveSpeed, slave_motor_speed)
 
     # Updates the batteries data
     def update_battery(self, module_number: int, battery_volt: float, battery_temperature: float) -> None:

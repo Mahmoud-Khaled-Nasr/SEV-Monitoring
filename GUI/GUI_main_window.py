@@ -7,6 +7,7 @@
 # Qt Designer
 # Begin
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -24,7 +25,7 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         MainWindow.setFont(font)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("sev-cut.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("GUI/sev-cut.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet("background-color: white")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -953,7 +954,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_29.addWidget(self.l7)
         self.horizontalLayout_22.addWidget(self.lights7frame)
         self.lights8frame = QtWidgets.QFrame(self.lightsGB_2)
-        self.lights8frame.setStyleSheet("background-color: #d6cc13;\n"
+        self.lights8frame.setStyleSheet("background-color: #black;\n"
 "border-radius: 15px;\n"
 "")
         self.lights8frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -990,7 +991,7 @@ class Ui_MainWindow(object):
         self.switchesGB_2.setCheckable(False)
         self.switchesGB_2.setObjectName("switchesGB_2")
         self.horizontalLayout_21 = QtWidgets.QHBoxLayout(self.switchesGB_2)
-        self.horizontalLayout_21.setContentsMargins(-1, 3, 20, 7)
+        self.horizontalLayout_21.setContentsMargins(-1, 3, 9, 7)
         self.horizontalLayout_21.setSpacing(20)
         self.horizontalLayout_21.setObjectName("horizontalLayout_21")
         self.switches3frame = QtWidgets.QFrame(self.switchesGB_2)
@@ -2676,7 +2677,7 @@ class Ui_MainWindow(object):
         self.slaveGB_2.setTitle(_translate("MainWindow", "Driver Slave MC"))
         self.label_91.setText(_translate("MainWindow", "Slave Motor Current:"))
         self.slaveCurrent.setText(_translate("MainWindow", "25.25"))
-        self.label_92.setText(_translate("MainWindow", "%"))
+        self.label_92.setText(_translate("MainWindow", "A"))
         self.label_93.setText(_translate("MainWindow", "Slave Motor Speed:"))
         self.slaveSpeed.setText(_translate("MainWindow", "25.25"))
         self.label_94.setText(_translate("MainWindow", "m/s"))
@@ -2792,6 +2793,7 @@ class Ui_MainWindow(object):
         self.batteryTemp14.setText(_translate("MainWindow", "25.25"))
         self.label_204.setText(_translate("MainWindow", "°C"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.batteries_tab), _translate("MainWindow", "Batteries Details"))
+
 
 # End
 
