@@ -2,17 +2,19 @@ from actions.action import Action
 from database.database import Session
 from database.database import insert_data_frames
 from models.laps.lap import Lap
+from definitions import ConnectionTypes
 
 
 class StartAction(Action):
 
-    def __init__(self, dispatcher):
+    def __init__(self, dispatcher, connection_type: ConnectionTypes, lap_name: str):
         super().__init__(dispatcher)
+        self.connection_type = connection_type
+        self.lap_name = lap_name
 
     def execute(self) -> None:
         # Start the serial reading thread
-        # TODO Yosry create gui to enter the name and info of the lap
-        self.dispatcher.current_lap = Lap("temp")
+        self.dispatcher.current_lap = Lap(self.lap_name)
         database_session = Session()
         database_session.add(self.dispatcher.current_lap)
         database_session.commit()

@@ -34,7 +34,7 @@ class Dispatcher(QObject):
     def receive_serial_data_handler(self, data_frame: DataFrame) -> None:
         ReceiveNewDataFrameAction(self, data_frame).execute()
 
-    @pyqtSlot(ConnectionTypes)   
+    @pyqtSlot(ConnectionTypes, str)  # Connection type and lap name
     def start_handler(self):
         StartAction(self).execute()
 
