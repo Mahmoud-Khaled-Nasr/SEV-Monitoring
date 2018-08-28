@@ -16,7 +16,7 @@ class ButtonModes(Enum):
 
 class GUIActions(QObject):
     # Signals
-    signal_start = pyqtSignal(ConnectionTypes)
+    signal_start = pyqtSignal(ConnectionTypes, str)
     signal_stop = pyqtSignal()
 
     # Constructor
