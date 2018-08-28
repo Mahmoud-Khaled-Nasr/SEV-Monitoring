@@ -35,8 +35,8 @@ class Dispatcher(QObject):
         ReceiveNewDataFrameAction(self, data_frame).execute()
 
     @pyqtSlot(ConnectionTypes, str)  # Connection type and lap name
-    def start_handler(self):
-        StartAction(self).execute()
+    def start_handler(self, connection_type: ConnectionTypes, lap_name: str):
+        StartAction(self, connection_type, lap_name).execute()
 
     @pyqtSlot()
     def stop_handler(self):
