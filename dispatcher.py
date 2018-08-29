@@ -16,27 +16,27 @@ class Dispatcher(QObject):
     def __init__(self, gui_interface: GUIInterface, serial_reader: SerialReader):
         super(Dispatcher, self).__init__()
         self.gui_interface: GUIInterface = gui_interface
-        self.connect_gui_signals()
+        self.__connect_gui_signals()
         self.serial_reader: SerialReader = serial_reader
-        self.connect_serial_reader_signals()
+        self.__connect_serial_reader_signals()
         self.current_lap: Lap = None
 
-    # Connects gui signals to their slots
-    def connect_gui_signals(self) -> None:
+    # Private method: Connects gui signals to their slots
+    def __connect_gui_signals(self) -> None:
         self.gui_interface.connect_start_signal(self.start_handler)
         self.gui_interface.connect_stop_signal(self.stop_handler)
 
-    # Connect serial input signals to their slots
-    def connect_serial_reader_signals(self) -> None:
+    # Private method: Connect serial input signals to their slots
+    def __connect_serial_reader_signals(self) -> None:
         self.serial_reader.connect_receive_data_signal(self.receive_serial_data_handler)
 
     @pyqtSlot(DataFrame)
     def receive_serial_data_handler(self, data_frame: DataFrame) -> None:
         ReceiveNewDataFrameAction(self, data_frame).execute()
 
-    @pyqtSlot(ConnectionTypes)   
-    def start_handler(self):
-        StartAction(self).execute()
+    @pyqtSlot(ConnectionTypes, str)  # Connection type and lap name
+    def start_handler(self, connection_type: ConnectionTypes, lap_name: str):
+        StartAction(self, connection_type, lap_name).execute()
 
     @pyqtSlot()
     def stop_handler(self):
