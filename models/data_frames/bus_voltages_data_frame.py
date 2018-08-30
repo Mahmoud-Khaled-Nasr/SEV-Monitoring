@@ -13,10 +13,11 @@ class BusVoltagesDataFrame(DataFrame):
 
     id = Column(Integer, ForeignKey(DatabaseTablesNames.DATA_FRAME_TABLE + ".id"), primary_key=True)
     DC_bus_voltage = Column(Integer, nullable=False)
+    charge_rate = Column(Integer, nullable=False)
 
     def __init__(self, frame_id: int, frame_value: bytes, DC_bus_voltage: int, charge_rate: int):
         super().__init__(frame_id, frame_value)
-        self.dc_bus_volt = DC_bus_voltage
+        self.DC_bus_voltage = DC_bus_voltage
         self.charge_rate = charge_rate
 
     # just for showing the data inside the objects in the times of need
