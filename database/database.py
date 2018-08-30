@@ -25,3 +25,7 @@ Session = sessionmaker(bind=database_engine)
 from database.insert_data_frame import InsertDataFrames
 
 insert_data_frames = InsertDataFrames()
+
+from database.database_seed import seed_database
+
+seed_database()
