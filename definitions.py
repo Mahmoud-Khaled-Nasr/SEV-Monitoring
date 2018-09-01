@@ -78,6 +78,7 @@ class DataFramesIDs:
 
 
 # Names for the database tables of data frames
+# TODO refactor
 class DatabaseTablesNames:
     DATA_FRAME_TABLE = "data_frames"
     CURRENT_TABLE = "currents"
@@ -88,3 +89,41 @@ class DatabaseTablesNames:
     SWITCH_TABLE = "switches"
     DRIVER_MASTER_MC_TABLE = "master_mc"
     DRIVER_SLAVE_MC_TABLE = "slave_mc"
+
+
+# Types of database tables
+class DatabaseTableTypes(Enum):
+    DATA_FRAME_TABLE = 0
+    CURRENTS_TABLE = 1
+    BUS_VOLTAGES_TABLE = 2
+    TEMPERATURES_TABLE = 3
+    BATTERIES_TABLE = 4
+    MASTER_MOTOR_TABLE = 5
+    SLAVE_MOTOR_TABLE = 6
+    LIGHTS_TABLE = 7
+    SWITCHES_TABLE = 8
+
+
+# All monitored items
+class MonitoredItems(Enum):
+    BATTERY_CURRENT = 1
+    MOTORS_CURRENT = 2
+    SOLAR_PANELS_CURRENT = 3
+
+    CHARGE_RATE = 4
+    DC_BUS_VOLT = 5
+
+    SOLAR_PANELS_TEMPERATURE = 6
+
+    MIN_BATTERY_VOLT = 7
+    MAX_BATTERY_VOLT = 8
+    MAX_BATTERY_TEMPERATURE = 9
+
+    MASTER_MOTOR_CURRENT = 10
+    MASTER_MOTOR_SPEED = 11
+
+    SLAVE_MOTOR_CURRENT = 12
+    SLAVE_MOTOR_SPEED = 13
+
+    BATTERY_MODULE_VOLT = 14
+    BATTERY_MODULE_TEMPERATURE = 15
