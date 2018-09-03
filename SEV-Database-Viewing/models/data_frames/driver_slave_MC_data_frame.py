@@ -1,19 +1,24 @@
-from struct import unpack
+from sqlalchemy import ForeignKey, Column, Integer, Float
 
 from models.data_frames.data_frame import DataFrame, GUIInterface
+from definitions import DatabaseTablesNames
 
 
-# TODO reimplement this class when the new data frames arrives
 class DriverSlaveMCDataFrame(DataFrame):
-    # A format string to determine how the bytes are parsed
-    # > : Big-endian
-    # H : unsigned short
-    _parse_string = ">HH"
+    __tablename__ = DatabaseTablesNames.DRIVER_SLAVE_MC_TABLE
+    __mapper_args__ = {
+        'polymorphic_identity': DatabaseTablesNames.DRIVER_SLAVE_MC_TABLE,
+    }
 
-    def __init__(self, frame_id: int, frame_value: bytes):
+    id = Column(Integer, ForeignKey(DatabaseTablesNames.DATA_FRAME_TABLE+".id"), primary_key=True)
+    slave_motor_current = Column(Float, nullable=False)
+    slave_motor_speed = Column(Float, nullable=False)
+
+    def __init__(self, frame_id: int, frame_value: bytes, slave_motor_current: float,
+                 slave_motor_speed: int):
         super().__init__(frame_id, frame_value)
-        (self.slave_motor_current, self.slave_motor_speed) \
-            = unpack(self._parse_string, self.frame_value[0:4])
+        self.slave_motor_current = slave_motor_current
+        self.slave_motor_speed = slave_motor_speed
 
     # just for showing the data inside the objects in the times of need
     def __repr__(self):

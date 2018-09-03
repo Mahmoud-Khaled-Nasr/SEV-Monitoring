@@ -69,7 +69,7 @@ def seed_database():
                                                                          , ranges.MASTER_MOTOR_CURRENT[1])
                                                                , randint(ranges.MASTER_MOTOR_SPEED[0],
                                                                          ranges.MASTER_MOTOR_SPEED[1]))
-            df7: DriverSlaveMCDataFrame = DriverSlaveMCDataFrame(df_ids.DRIVER_SLAVE_MC_FRAME_ID
+            df8: DriverSlaveMCDataFrame = DriverSlaveMCDataFrame(df_ids.DRIVER_SLAVE_MC_FRAME_ID
                                                                    , os.urandom(8)
                                                                    , randint(ranges.SLAVE_MOTOR_CURRENT[0]
                                                                              , ranges.SLAVE_MOTOR_CURRENT[1])
@@ -81,11 +81,15 @@ def seed_database():
             df3.lap = lap
             df5.lap = lap
             df6.lap = lap
+            df7.lap = lap
+            df8.lap = lap
             database_session.add(df1)
             database_session.add(df2)
             database_session.add(df3)
             database_session.add(df5)
             database_session.add(df6)
+            database_session.add(df7)
+            database_session.add(df8)
 
     database_session.commit()
     database_session.close()

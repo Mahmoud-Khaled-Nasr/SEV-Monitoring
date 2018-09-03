@@ -13,7 +13,6 @@ class GUIInterface:
         # Initializations
         self.gui_app = MainWindow()
         self.gui_actions = GUIActions(self.gui_app)
-        self.plot()
 
     # Starts the main event loop
     def start_gui(self) -> None:
@@ -62,19 +61,23 @@ class GUIInterface:
                 table.setItem(row_number, column_number, QTableWidgetItem(str(row_data[column_number])))
 
     # Plots the given data on the graph canvas
-    def plot(self):
+    def plot(self, all_graphs_data):
+        # all_graphs_data: All data that needs to be plotted as a list of tuples, each tuple is a graph
+        # Each tuple contains 2 lists, one for X values and one for Y values
         self.gui_app.graph_figure.clear()
-        ax = self.gui_app.graph_figure.add_subplot(111)
-        ax.plot()
+        axes = self.gui_app.graph_figure.add_subplot(111)
+        for graph_data in all_graphs_data:
+            (x, y) = graph_data
+            axes.plot(x,y)
         self.gui_app.graph_canvas.draw()
 
     # Connects the view lap signal to its slot
     def connect_view_lap_signal(self, view_lap_slot: Callable):
         self.gui_actions.signal_view_lap.connect(view_lap_slot)
 
+    # Connects the table selected signal to its slot
     def connect_table_selected_signal(self, table_selected_slot: Callable):
         self.gui_actions.signal_table_selected.connect(table_selected_slot)
 
-
-
-
+    def connect_plot_signal(self, plot_slot: Callable):
+        self.gui_actions.signal_plot.connect(plot_slot)

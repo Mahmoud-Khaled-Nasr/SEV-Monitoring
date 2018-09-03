@@ -10,7 +10,7 @@ class LapWidget(QWidget):
         lap_name_label = QLabel(lap_name)
         # Create and set the font
         widget_font = QFont()
-        widget_font.setFamily("Bahnschrift SemiBold SemiConden")
+        widget_font.setFamily("Century Gothic")
         widget_font.setPointSize(16)
         lap_name_label.setFont(widget_font)
         # select_button.setFont(widget_font)
