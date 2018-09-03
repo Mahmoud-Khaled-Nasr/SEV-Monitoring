@@ -103,13 +103,15 @@ def create_data_frame_object(frame_id, frame_value: bytes) -> DataFrame:
                                  daytime=daytime)
 
     elif frame_id == DataFramesIDs.DRIVER_MASTER_MC_FRAME_ID:
-        # TODO which frame is this?? and reimplement this segment when the new data frames arrives
-        # TODO calculate current from current percentage using costants in definitions
-        parsing_string = "<HH"
-        return DriverMasterMCDataFrame(frame_id=frame_id, frame_value=frame_value)
+        parsing_string = "<ff"
+        (master_motor_current, master_motor_speed) = unpack(parsing_string, frame_value)
+        return DriverMasterMCDataFrame(frame_id=frame_id, frame_value=frame_value,
+                                       master_motor_current=master_motor_current,
+                                       master_motor_speed=master_motor_speed)
 
     elif frame_id == DataFramesIDs.DRIVER_SLAVE_MC_FRAME_ID:
-        # TODO which frame is this?? and reimplement this segment when the new data frames arrives
-        # TODO calculate current from current percentage using constants in definitions
-        parsing_string = "<HH"
-        return DriverSlaveMCDataFrame(frame_id=frame_id, frame_value=frame_value)
+        parsing_string = "<ff"
+        (slave_motor_current, slave_motor_speed) = unpack(parsing_string, frame_value)
+        return DriverSlaveMCDataFrame(frame_id=frame_id, frame_value=frame_value,
+                                      slave_motor_current=slave_motor_current,
+                                      slave_motor_speed=slave_motor_speed)

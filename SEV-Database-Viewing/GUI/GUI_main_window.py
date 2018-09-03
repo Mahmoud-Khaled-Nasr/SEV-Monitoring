@@ -1,7 +1,7 @@
 import sys
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-import numpy as np
+
 # When replacing designer code remember to:
 #   Only replace the code between begin and end
 #   Change the icon url

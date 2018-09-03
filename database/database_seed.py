@@ -8,6 +8,8 @@ from models.data_frames.tempratures_data_frame import TemperaturesDataFrame
 from models.data_frames.battery_data_frame import BatteryDataFrame
 from models.data_frames.lights_status_data_frame import LightsDataFrame
 from models.data_frames.switches_status_data_frame import SwitchesDataFrame
+from models.data_frames.driver_master_MC_data_frame import DriverMasterMCDataFrame
+from models.data_frames.driver_slave_MC_data_frame import DriverSlaveMCDataFrame
 from models.laps.lap import Lap
 from definitions import DataFramesIDs as df_ids
 from definitions import Ranges as ranges
@@ -61,6 +63,18 @@ def seed_database():
                                                        , bool(getrandbits(1))
                                                        , bool(getrandbits(1))
                                                        , bool(getrandbits(1)))
+            df7: DriverMasterMCDataFrame = DriverMasterMCDataFrame(df_ids.DRIVER_MASTER_MC_FRAME_ID
+                                                               , os.urandom(8)
+                                                               , randint(ranges.MASTER_MOTOR_CURRENT[0]
+                                                                         , ranges.MASTER_MOTOR_CURRENT[1])
+                                                               , randint(ranges.MASTER_MOTOR_SPEED[0],
+                                                                         ranges.MASTER_MOTOR_SPEED[1]))
+            df7: DriverSlaveMCDataFrame = DriverSlaveMCDataFrame(df_ids.DRIVER_SLAVE_MC_FRAME_ID
+                                                                   , os.urandom(8)
+                                                                   , randint(ranges.SLAVE_MOTOR_CURRENT[0]
+                                                                             , ranges.SLAVE_MOTOR_CURRENT[1])
+                                                                   , randint(ranges.SLAVE_MOTOR_SPEED[0],
+                                                                             ranges.SLAVE_MOTOR_SPEED[1]))
             lap.finish_lap()
             df1.lap = lap
             df2.lap = lap
