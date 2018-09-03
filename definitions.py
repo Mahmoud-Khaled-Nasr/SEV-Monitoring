@@ -78,7 +78,6 @@ class DataFramesIDs:
 
 
 # Names for the database tables of data frames
-# TODO refactor
 class DatabaseTablesNames:
     DATA_FRAME_TABLE = "data_frames"
     CURRENT_TABLE = "currents"
@@ -87,8 +86,8 @@ class DatabaseTablesNames:
     BATTERY_TABLE = "batteries"
     LIGHT_TABLE = "lights"
     SWITCH_TABLE = "switches"
-    DRIVER_MASTER_MC_TABLE = "master_mc"
-    DRIVER_SLAVE_MC_TABLE = "slave_mc"
+    MASTER_MOTOR_TABLE = "master motor"
+    SLAVE_MOTOR_TABLE = "slave motor"
 
 
 # Types of database tables

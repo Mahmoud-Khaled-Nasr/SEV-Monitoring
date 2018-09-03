@@ -4,9 +4,9 @@ from abc import ABCMeta, abstractmethod
 from sqlalchemy import ForeignKey, Column, Integer, DateTime, VARBINARY, String
 from sqlalchemy.orm import relationship
 
-from database.database import DatabaseBaseClass
+from database.database_base_class import DatabaseBaseClass
 from definitions import DatabaseTablesNames
-from GUI.GUI_interface import GUIInterface
+from monitoring.GUI.GUI_interface import GUIInterface
 
 
 class DataFrame(DatabaseBaseClass):

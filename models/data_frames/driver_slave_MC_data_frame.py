@@ -5,9 +5,9 @@ from definitions import DatabaseTablesNames
 
 
 class DriverSlaveMCDataFrame(DataFrame):
-    __tablename__ = DatabaseTablesNames.DRIVER_SLAVE_MC_TABLE
+    __tablename__ = DatabaseTablesNames.SLAVE_MOTOR_TABLE
     __mapper_args__ = {
-        'polymorphic_identity': DatabaseTablesNames.DRIVER_SLAVE_MC_TABLE,
+        'polymorphic_identity': DatabaseTablesNames.SLAVE_MOTOR_TABLE,
     }
 
     id = Column(Integer, ForeignKey(DatabaseTablesNames.DATA_FRAME_TABLE+".id"), primary_key=True)

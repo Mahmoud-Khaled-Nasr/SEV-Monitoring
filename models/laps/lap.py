@@ -3,7 +3,7 @@ import datetime
 from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.orm import relationship
 
-from database.database import DatabaseBaseClass
+from database.database_base_class import DatabaseBaseClass
 
 
 class Lap(DatabaseBaseClass):

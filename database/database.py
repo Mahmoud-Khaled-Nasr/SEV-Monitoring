@@ -1,10 +1,7 @@
 from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-
-
-DatabaseBaseClass = declarative_base()
-database_engine = create_engine('sqlite:///monitoring.db', echo=True)
+from database.database_base_class import DatabaseBaseClass
+database_engine = create_engine('sqlite:///../monitoring.db', echo=False)
 
 # Import the models here to be created by the database
 from models.data_frames.data_frame import DataFrame

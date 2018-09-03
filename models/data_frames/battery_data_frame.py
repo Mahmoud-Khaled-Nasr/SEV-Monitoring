@@ -12,8 +12,8 @@ class BatteryDataFrame(DataFrame):
     }
 
     id = Column(Integer, ForeignKey(DatabaseTablesNames.DATA_FRAME_TABLE + ".id"), primary_key=True)
-    voltage = Column(Integer, nullable=False)
-    temperature = Column(Integer, nullable=False)
+    battery_volt = Column(Integer, nullable=False)
+    battery_temperature = Column(Integer, nullable=False)
     battery_id = Column(Integer, nullable=False)
 
     def __init__(self, frame_id: int, frame_value: bytes, voltage: int, temperature: int, battery_id: int):
