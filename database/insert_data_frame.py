@@ -1,4 +1,4 @@
-from queue import Queue
+from queue import Queue, Empty
 
 from PyQt5.QtCore import QThread
 
@@ -20,11 +20,12 @@ class InsertDataFrames (QThread):
 
     def run(self):
         self.operate = True
-        time_out = 7
+        time_out = 1
         while self.operate:
             print("committing")
-            frame: DataFrame = self.data_frames.get(timeout=time_out)
-            if frame is None:
+            try:
+                frame: DataFrame = self.data_frames.get(timeout=time_out)
+            except Empty:
                 continue
             self.database_session.add(frame)
             self.database_session.commit()
