@@ -18,6 +18,7 @@ class GUIActions(QObject):
     # Signals
     signal_start = pyqtSignal(ConnectionTypes, str)
     signal_stop = pyqtSignal()
+    signal_view_laps = pyqtSignal()
 
     # Constructor
     def __init__(self, gui_app: Ui_MainWindow, gui_updater: GUIUpdater):
@@ -30,7 +31,7 @@ class GUIActions(QObject):
         # Connect button press signals
         self.__set_button_signals_connections()
 
-    # Start/Stop button click action
+    # Start Lap/Stop button click action
     def start_stop_button_clicked(self) -> None:
         if self.start_end_lap_button_mode is ButtonModes.START:  # If the mode is Start
             # Get connection type
@@ -49,7 +50,7 @@ class GUIActions(QObject):
             # Emit a stop signal
             self.signal_stop.emit()
 
-    # Pause/Continue button click action
+    # Pause Readings/Continue button click action
     def pause_continue_button_clicked(self) -> None:
         if self.pause_continue_button_mode is ButtonModes.PAUSE:  # If the mode is pause
             # Set the mode and button text to continue
@@ -64,10 +65,15 @@ class GUIActions(QObject):
             # Set the pause signal
             self.gui_updater.set_paused(False)
 
+    # View Laps button click action
+    def view_laps_button_clicked(self) -> None:
+        self.signal_view_laps.emit()
+
     # Private method: Connects the buttons clicks to their action
     def __set_button_signals_connections(self) -> None:
         self.gui_app.start_end_button.clicked.connect(self.start_stop_button_clicked)
         self.gui_app.pause_continue_button.clicked.connect(self.pause_continue_button_clicked)
+        self.gui_app.view_laps_button.clicked.connect(self.view_laps_button_clicked)
 
     # Private method: Gets the connection type (USB or WiFi) through a message box
     def __get_connection_type(self) -> ConnectionTypes:

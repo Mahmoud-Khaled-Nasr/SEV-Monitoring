@@ -23,8 +23,8 @@ class BusVoltagesDataFrame(DataFrame):
     # just for showing the data inside the objects in the times of need
     def __repr__(self):
         return "<Bus Voltage Data Frame( frame ID='%d', frame value='%s', dc bus volt ='%d', charge rate ='%d')>" % \
-               (self.frame_id, self.frame_value, self.dc_bus_volt, self.charge_rate)
+               (self.frame_id, self.frame_value, self.DC_bus_voltage, self.charge_rate)
 
     # Updates the gui values
     def update_gui(self, gui_interface: GUIInterface) -> None:
-        gui_interface.update_volts(dc_bus_volt=self.dc_bus_volt, charge_rate=self.charge_rate)
+        gui_interface.update_volts(dc_bus_volt=self.DC_bus_voltage, charge_rate=self.charge_rate)

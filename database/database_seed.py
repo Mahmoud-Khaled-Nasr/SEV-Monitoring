@@ -24,7 +24,7 @@ def seed_database():
 
     LAPS_NUMBER: int = 10
     FRAMES_NUMBER_PER_FRAME_TYPE: int = 30
-    LAP_NAME: str = "Name"
+    LAP_NAME: str = "Lap "
 
     for i in range(0, LAPS_NUMBER):
         lap: Lap = Lap(LAP_NAME + str(i))

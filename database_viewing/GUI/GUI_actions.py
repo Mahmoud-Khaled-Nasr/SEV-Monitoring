@@ -10,6 +10,7 @@ from typing import Dict
 class GUIActions(QObject):
     # Signals
     signal_view_lap = pyqtSignal(int)
+    signal_delete_lap = pyqtSignal(int)
     signal_table_selected = pyqtSignal(DatabaseTableTypes)
     signal_plot = pyqtSignal(object)  # Can't use dict or Dict with PyQt5
 
@@ -26,6 +27,7 @@ class GUIActions(QObject):
         self.gui_app.viewLabButton.clicked.connect(self.view_lap_button_pressed)
         self.gui_app.tableSelector.currentIndexChanged.connect(self.table_selector_changed)
         self.gui_app.plotButton.clicked.connect(self.plot_button_pressed)
+        self.gui_app.deleteLabButton.clicked.connect(self.delete_lap_button_pressed)
 
     def view_lap_button_pressed(self) -> None:
         # Get the lap id from the selected lap widget
@@ -115,6 +117,19 @@ class GUIActions(QObject):
 
         # Emit a signal
         self.signal_plot.emit(checked_items)
+
+    def delete_lap_button_pressed(self) -> None:
+        # Get the lap id from the selected lap widget
+        laps_list = self.gui_app.lapsList
+        lap_widget: LapWidget = laps_list.itemWidget(laps_list.currentItem())
+        # Do nothing if no lap is selected
+        if lap_widget is None:
+            return
+        lap_id = lap_widget.lap_id
+        # Remove the selected item from the list
+        self.gui_app.lapsList.takeItem(self.gui_app.lapsList.currentRow())
+        # Emit a signal
+        self.signal_delete_lap.emit(lap_id)
 
     # Plots the given data on the graph canvas
     def plot(self, all_graphs_data) -> None:

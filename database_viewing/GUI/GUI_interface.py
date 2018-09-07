@@ -38,5 +38,13 @@ class GUIInterface:
     def connect_table_selected_signal(self, table_selected_slot: Callable):
         self.gui_actions.signal_table_selected.connect(table_selected_slot)
 
+    # Connects the plot signal to its slot
     def connect_plot_signal(self, plot_slot: Callable):
         self.gui_actions.signal_plot.connect(plot_slot)
+
+    # Connects the delete lap signal to its slot
+    def connect_delete_lap_signal(self, delete_lap_slot: Callable):
+        self.gui_actions.signal_delete_lap.connect(delete_lap_slot)
+
+
+

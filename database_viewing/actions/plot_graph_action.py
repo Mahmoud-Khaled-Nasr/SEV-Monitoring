@@ -11,23 +11,26 @@ from database_viewing.GUI.GUI_interface import GUIInterface
 from typing import Dict
 
 
+# Action to plot a graph of selected items on the GUI
 class PlotGraphAction(Action):
     # Constructor
     def __init__(self, dispatcher, items_to_plot: Dict[MonitoredItems, bool]):
         super().__init__(dispatcher)
+        # A list of the selected items to plot
         self.items_to_plot = items_to_plot
 
     def execute(self):
         all_graphs_data = self.__get_all_graphs_data()
+        # Get the GUI interface to access the plot function
         gui_interface: GUIInterface = self.dispatcher.gui_interface
         gui_interface.plot(all_graphs_data=all_graphs_data)
 
     # Private method: Gets all data that needs to be plotted as a list of tuples, each tuple is a graph
     # Each tuple contains 2 lists, one for X values and one for Y values
     def __get_all_graphs_data(self):
-        # Open a session
+        # Open a session to the database
         session = Session()
-
+        # Initializes a list of all graphs
         all_graphs_data = []
 
         # Check which graphs to get their data

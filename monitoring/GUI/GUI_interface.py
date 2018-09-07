@@ -73,3 +73,7 @@ class GUIInterface:
     # Connects the stop signal to its slot
     def connect_stop_signal(self, stop_slot: Callable) -> None:
         self.gui_actions.signal_stop.connect(stop_slot)
+
+    # Connects the view laps signal to its slot
+    def connect_view_laps_signal(self, view_laps_slot: Callable) -> None:
+        self.gui_actions.signal_view_laps.connect(view_laps_slot)

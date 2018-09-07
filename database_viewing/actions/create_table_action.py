@@ -12,6 +12,7 @@ from definitions import DatabaseTableTypes
 from database_viewing.GUI.GUI_interface import GUIInterface
 
 
+# Action for creating a table on the GUI imported from the database
 class CreateTableAction(Action):
     # Constructor
     def __init__(self, dispatcher, table_type: DatabaseTableTypes):
@@ -33,7 +34,7 @@ class CreateTableAction(Action):
 
     # Sets the table data and table column headers of the given table type as a 2D list
     def __get_table_data(self):
-        # Open a session
+        # Open a session to the database
         session = Session()
         # Check for table type
         table_type = self.table_type

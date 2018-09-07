@@ -9,6 +9,7 @@ from definitions import ConnectionTypes
 from monitoring.actions.start_action import StartAction
 from monitoring.actions.receive_new_data_frame_action import ReceiveNewDataFrameAction
 from monitoring.actions.stop_action import StopAction
+from monitoring.actions.view_laps_action import ViewLapsAction
 
 
 class Dispatcher(QObject):
@@ -25,6 +26,7 @@ class Dispatcher(QObject):
     def __connect_gui_signals(self) -> None:
         self.gui_interface.connect_start_signal(self.start_handler)
         self.gui_interface.connect_stop_signal(self.stop_handler)
+        self.gui_interface.connect_view_laps_signal(self.view_laps_handler)
 
     # Private method: Connect serial input signals to their slots
     def __connect_serial_reader_signals(self) -> None:
@@ -41,3 +43,7 @@ class Dispatcher(QObject):
     @pyqtSlot()
     def stop_handler(self):
         StopAction(self).execute()
+
+    @pyqtSlot()
+    def view_laps_handler(self):
+        ViewLapsAction(self).execute()
