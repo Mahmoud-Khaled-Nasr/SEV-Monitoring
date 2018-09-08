@@ -22,4 +22,7 @@ class StartAction(Action):
         # Starting the thread that insert new frames to the database
         insert_data_frames.start()
         # Start the serial reader
-        self.dispatcher.serial_reader.start()
+        if self.connection_type == ConnectionTypes.USB:
+            self.dispatcher.serial_reader.start()
+        elif self.connection_type == ConnectionTypes.WIFI:
+            self.dispatcher.wifi_reader.start()
