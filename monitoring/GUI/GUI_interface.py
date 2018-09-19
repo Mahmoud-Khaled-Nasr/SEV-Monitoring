@@ -20,9 +20,9 @@ class GUIInterface:
         self.update_lights([True, False, True])
         self.update_switches([False, True, False, True, True, False])
 
+    # Shows the main window
     def start_gui(self) -> None:
-        # Start the main event loop
-        sys.exit(self.gui_app.app.exec_())
+        self.gui_app.main_window.showMaximized()
 
     # Updates the currents on the GUI
     def update_currents(self, battery_current: float, motors_current: float, solar_panels_current: float) -> None:

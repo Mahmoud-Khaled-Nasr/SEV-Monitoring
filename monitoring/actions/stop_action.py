@@ -11,6 +11,7 @@ class StopAction(Action):
     def execute(self) -> None:
         # Properly stops reading, closes the port, and stops executing the thread
         self.dispatcher.serial_reader.stop()
+        self.dispatcher.serial_reader.wait()
         # Stopping Adding new frames to the database
         insert_data_frames.stop()
         insert_data_frames.wait()

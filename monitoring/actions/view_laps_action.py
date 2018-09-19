@@ -9,4 +9,4 @@ class ViewLapsAction(Action):
 
     def execute(self) -> None:
         # Start the database viewer in a new process
-        Popen(['python', '../database_viewing/main.py'])
+        Popen(['python', '../database_viewing/monitoring.py'])

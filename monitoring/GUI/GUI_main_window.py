@@ -24,7 +24,7 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         MainWindow.setFont(font)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("GUI/sev-cut.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("sev-cut.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet("background-color: white")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -4450,7 +4450,5 @@ class Ui_MainWindow(object):
 
 class MainWindow(Ui_MainWindow):
     def __init__(self):
-        self.app = QtWidgets.QApplication(sys.argv)
         self.main_window = QtWidgets.QMainWindow()
         self.setupUi(self.main_window)
-        self.main_window.showMaximized()

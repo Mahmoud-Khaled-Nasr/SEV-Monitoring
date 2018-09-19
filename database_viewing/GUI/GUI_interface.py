@@ -11,10 +11,9 @@ class GUIInterface:
         self.gui_app = MainWindow()
         self.gui_actions = GUIActions(self.gui_app)
 
-    # Starts the main event loop
+    # Shows the main window
     def start_gui(self) -> None:
-        # Start the main event loop
-        sys.exit(self.gui_app.app.exec_())
+        self.gui_app.main_window.show()
 
     # Creates a new list item and adds it to the laps list
     def update_laps_list(self, laps) -> None:

@@ -24,7 +24,7 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         MainWindow.setFont(font)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("GUI/sev-cut.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("sev-cut.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet("QMainWindow {background-color: white}")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -353,7 +353,6 @@ class Ui_MainWindow(object):
 
 class MainWindow(Ui_MainWindow):
     def __init__(self):
-        self.app = QtWidgets.QApplication(sys.argv)
         self.main_window = QtWidgets.QMainWindow()
         self.setupUi(self.main_window)
         # Figure and Canvas of the graph
@@ -364,7 +363,6 @@ class MainWindow(Ui_MainWindow):
         self.tableSelector.setCurrentIndex(-1)
         self.stackedWidget.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(0)
-        self.main_window.show()
 
 
 

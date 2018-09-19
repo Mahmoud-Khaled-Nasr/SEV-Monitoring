@@ -1,4 +1,5 @@
 from PyQt5.QtCore import QObject, pyqtSlot
+from typing import Callable
 
 from monitoring.GUI.GUI_interface import GUIInterface
 from monitoring.input.serial_reader import SerialReader
@@ -22,15 +23,22 @@ class Dispatcher(QObject):
         self.__connect_serial_reader_signals()
         self.current_lap: Lap = None
 
+    # Starts the monitoring GUI
+    def start_gui(self):
+        self.gui_interface.start_gui()
+
     # Private method: Connects gui signals to their slots
     def __connect_gui_signals(self) -> None:
         self.gui_interface.connect_start_signal(self.start_handler)
         self.gui_interface.connect_stop_signal(self.stop_handler)
-        self.gui_interface.connect_view_laps_signal(self.view_laps_handler)
 
     # Private method: Connect serial input signals to their slots
     def __connect_serial_reader_signals(self) -> None:
         self.serial_reader.connect_receive_data_signal(self.receive_serial_data_handler)
+
+    # Connects the view laps signal to an external slot
+    def connect_view_laps_signal(self, view_laps_handler: Callable):
+        self.gui_interface.connect_view_laps_signal(view_laps_handler)
 
     @pyqtSlot(DataFrame)
     def receive_serial_data_handler(self, data_frame: DataFrame) -> None:
@@ -43,7 +51,3 @@ class Dispatcher(QObject):
     @pyqtSlot()
     def stop_handler(self):
         StopAction(self).execute()
-
-    @pyqtSlot()
-    def view_laps_handler(self):
-        ViewLapsAction(self).execute()

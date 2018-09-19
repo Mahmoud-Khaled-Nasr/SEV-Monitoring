@@ -20,6 +20,10 @@ class Dispatcher(QObject):
         # Load the laps to the GUI
         LoadLapsAction(self).execute()
 
+    # Starts the database viewing GUI
+    def start_gui(self):
+        self.gui_interface.start_gui()
+
     # Connect signals to their slots
     def __connect_signals(self) -> None:
         self.gui_interface.connect_view_lap_signal(self.view_lap_handler)
