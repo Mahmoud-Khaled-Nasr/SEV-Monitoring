@@ -1,16 +1,16 @@
 from PyQt5.QtCore import QObject, pyqtSlot
 from typing import Callable
 
-from monitoring.GUI.GUI_interface import GUIInterface
-from monitoring.input.serial_reader import SerialReader
+from data_monitor.GUI.GUI_interface import GUIInterface
+from data_monitor.input.serial_reader import SerialReader
 from models.data_frames.data_frame import DataFrame
 from models.laps.lap import Lap
 from definitions import ConnectionTypes
 
-from monitoring.actions.start_action import StartAction
-from monitoring.actions.receive_new_data_frame_action import ReceiveNewDataFrameAction
-from monitoring.actions.stop_action import StopAction
-from monitoring.actions.view_laps_action import ViewLapsAction
+from data_monitor.actions.start_action import StartAction
+from data_monitor.actions.receive_new_data_frame_action import ReceiveNewDataFrameAction
+from data_monitor.actions.stop_action import StopAction
+from data_monitor.actions.view_laps_action import ViewLapsAction
 
 
 class Dispatcher(QObject):

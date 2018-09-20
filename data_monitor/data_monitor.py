@@ -1,6 +1,6 @@
-from monitoring.dispatcher import Dispatcher
-from monitoring.GUI.GUI_interface import GUIInterface
-from monitoring.input.serial_reader import SerialReader
+from data_monitor.dispatcher import Dispatcher
+from data_monitor.GUI.GUI_interface import GUIInterface
+from data_monitor.input.serial_reader import SerialReader
 from typing import Callable
 from PyQt5.QtCore import pyqtSlot, QObject
 

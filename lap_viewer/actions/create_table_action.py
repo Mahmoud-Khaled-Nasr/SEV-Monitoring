@@ -1,5 +1,5 @@
 from database.database import Session
-from database_viewing.actions.action import Action
+from lap_viewer.actions.action import Action
 from models.data_frames.currents_data_frame import CurrentsDataFrame
 from models.data_frames.bus_voltages_data_frame import BusVoltagesDataFrame
 from models.data_frames.tempratures_data_frame import TemperaturesDataFrame
@@ -9,7 +9,7 @@ from models.data_frames.battery_data_frame import BatteryDataFrame
 from models.data_frames.driver_master_MC_data_frame import DriverMasterMCDataFrame
 from models.data_frames.driver_slave_MC_data_frame import DriverSlaveMCDataFrame
 from definitions import DatabaseTableTypes
-from database_viewing.GUI.GUI_interface import GUIInterface
+from lap_viewer.GUI.GUI_interface import GUIInterface
 
 
 # Action for creating a table on the GUI imported from the database

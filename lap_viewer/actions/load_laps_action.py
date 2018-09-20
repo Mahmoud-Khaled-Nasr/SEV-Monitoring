@@ -1,5 +1,5 @@
 from database.database import Session
-from database_viewing.actions.action import Action
+from lap_viewer.actions.action import Action
 from models.laps.lap import Lap
 
 

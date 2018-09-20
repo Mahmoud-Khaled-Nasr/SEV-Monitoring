@@ -5,7 +5,7 @@ from PyQt5.QtCore import QThread, pyqtSignal
 from serial import Serial, SerialException
 from typing import Callable
 
-from monitoring.input.data_frames_factory import get_data_frame_size, create_data_frame_object
+from data_monitor.input.data_frames_factory import get_data_frame_size, create_data_frame_object
 from models.data_frames.data_frame import DataFrame
 
 

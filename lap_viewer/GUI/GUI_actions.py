@@ -1,5 +1,5 @@
-from database_viewing.GUI.GUI_main_window import MainWindow
-from database_viewing.GUI.GUI_lap_widget import LapWidget
+from lap_viewer.GUI.GUI_main_window import MainWindow
+from lap_viewer.GUI.GUI_lap_widget import LapWidget
 from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem, QListWidgetItem, QHeaderView
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import pyqtSignal, QObject

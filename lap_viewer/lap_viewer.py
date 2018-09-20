@@ -1,8 +1,8 @@
-from database_viewing.GUI.GUI_interface import GUIInterface
-from database_viewing.dispatcher import Dispatcher
+from lap_viewer.GUI.GUI_interface import GUIInterface
+from lap_viewer.dispatcher import Dispatcher
 
 
-class DatabaseViewer:
+class LapViewer:
 
     def __init__(self):
         # Create a gui interface and a dispatcher

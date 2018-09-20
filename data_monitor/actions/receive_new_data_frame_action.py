@@ -1,4 +1,4 @@
-from monitoring.actions.action import Action
+from data_monitor.actions.action import Action
 from database.database import insert_data_frames
 from models.data_frames.data_frame import DataFrame
 

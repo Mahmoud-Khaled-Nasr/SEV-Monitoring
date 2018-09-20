@@ -1,6 +1,6 @@
 from definitions import Ranges, Tolerances
 from PyQt5.QtWidgets import QLabel
-from monitoring.GUI.GUI_main_window import Ui_MainWindow
+from data_monitor.GUI.GUI_main_window import Ui_MainWindow
 from typing import List
 
 

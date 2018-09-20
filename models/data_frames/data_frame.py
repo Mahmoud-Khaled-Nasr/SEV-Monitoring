@@ -6,7 +6,7 @@ from sqlalchemy.orm import relationship
 
 from database.database_base_class import DatabaseBaseClass
 from definitions import DatabaseTablesNames
-from monitoring.GUI.GUI_interface import GUIInterface
+from data_monitor.GUI.GUI_interface import GUIInterface
 
 
 class DataFrame(DatabaseBaseClass):

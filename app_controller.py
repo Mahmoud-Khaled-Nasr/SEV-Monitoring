@@ -1,5 +1,5 @@
-from monitoring.data_monitor import DataMonitor
-from database_viewing.database_viewer import DatabaseViewer
+from data_monitor.data_monitor import DataMonitor
+from lap_viewer.lap_viewer import LapViewer
 from PyQt5.QtWidgets import QApplication
 import sys
 
@@ -20,7 +20,7 @@ class AppController:
     # Starts the database viewer thread
     # If one is created while one is running, the opened one is closed and a new one is created
     def start_database_viewer(self):
-        self.database_viewer = DatabaseViewer()
+        self.database_viewer = LapViewer()
         self.database_viewer.start()
 
 

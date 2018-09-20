@@ -1,5 +1,5 @@
-from monitoring.GUI.GUI_main_window import Ui_MainWindow
-from monitoring.GUI.GUI_updater import GUIUpdater
+from data_monitor.GUI.GUI_main_window import Ui_MainWindow
+from data_monitor.GUI.GUI_updater import GUIUpdater
 from enum import Enum
 from PyQt5.QtCore import pyqtSignal, QObject, Qt
 from PyQt5.QtWidgets import QMessageBox, QPushButton, QDialog, QLineEdit, QHBoxLayout, QLabel

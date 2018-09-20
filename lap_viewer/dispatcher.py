@@ -1,10 +1,10 @@
 from PyQt5.QtCore import QObject, pyqtSlot
-from database_viewing.GUI.GUI_interface import GUIInterface
-from database_viewing.actions.load_laps_action import LoadLapsAction
-from database_viewing.actions.view_lap_action import ViewLapAction
-from database_viewing.actions.create_table_action import CreateTableAction
-from database_viewing.actions.plot_graph_action import PlotGraphAction
-from database_viewing.actions.delete_lap_action import DeleteLapAction
+from lap_viewer.GUI.GUI_interface import GUIInterface
+from lap_viewer.actions.load_laps_action import LoadLapsAction
+from lap_viewer.actions.view_lap_action import ViewLapAction
+from lap_viewer.actions.create_table_action import CreateTableAction
+from lap_viewer.actions.plot_graph_action import PlotGraphAction
+from lap_viewer.actions.delete_lap_action import DeleteLapAction
 from definitions import DatabaseTableTypes, MonitoredItems
 from models.laps.lap import Lap
 from typing import Dict

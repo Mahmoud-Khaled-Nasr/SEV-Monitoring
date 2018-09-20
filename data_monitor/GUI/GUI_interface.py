@@ -1,5 +1,5 @@
-from monitoring.GUI.GUI_main_window import MainWindow
-from monitoring.GUI.GUI_actions import GUIActions, GUIUpdater
+from data_monitor.GUI.GUI_main_window import MainWindow
+from data_monitor.GUI.GUI_actions import GUIActions, GUIUpdater
 from typing import List, Callable
 import sys
 

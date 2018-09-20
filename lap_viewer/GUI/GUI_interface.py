@@ -1,5 +1,5 @@
-from database_viewing.GUI.GUI_main_window import MainWindow
-from database_viewing.GUI.GUI_actions import GUIActions
+from lap_viewer.GUI.GUI_main_window import MainWindow
+from lap_viewer.GUI.GUI_actions import GUIActions
 import sys
 from typing import Callable
 

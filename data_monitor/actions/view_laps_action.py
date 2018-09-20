@@ -1,4 +1,4 @@
-from monitoring.actions.action import Action
+from data_monitor.actions.action import Action
 from subprocess import Popen
 
 
@@ -9,4 +9,4 @@ class ViewLapsAction(Action):
 
     def execute(self) -> None:
         # Start the database viewer in a new process
-        Popen(['python', '../database_viewing/monitoring.py'])
+        Popen(['python', '../lap_viewer/monitoring.py'])
