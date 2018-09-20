@@ -9,7 +9,7 @@ class AppController:
         super(AppController, self).__init__()
         self.app = QApplication(sys.argv)
         self.data_monitor = None
-        self.database_viewer = None
+        self.lap_viewer = None
 
     # Starts the application by starting the monitor
     def start_app(self):
@@ -20,7 +20,7 @@ class AppController:
     # Starts the database viewer thread
     # If one is created while one is running, the opened one is closed and a new one is created
     def start_database_viewer(self):
-        self.database_viewer = LapViewer()
-        self.database_viewer.start()
+        self.lap_viewer = LapViewer()
+        self.lap_viewer.start()
 
 
