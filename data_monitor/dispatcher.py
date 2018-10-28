@@ -3,6 +3,7 @@ from typing import Callable
 
 from data_monitor.GUI.GUI_interface import GUIInterface
 from data_monitor.input.serial_reader import SerialReader
+from data_monitor.input.wifi_reader import WiFiReader
 from models.data_frames.data_frame import DataFrame
 from models.laps.lap import Lap
 from definitions import ConnectionTypes
@@ -10,16 +11,16 @@ from definitions import ConnectionTypes
 from data_monitor.actions.start_action import StartAction
 from data_monitor.actions.receive_new_data_frame_action import ReceiveNewDataFrameAction
 from data_monitor.actions.stop_action import StopAction
-from data_monitor.actions.view_laps_action import ViewLapsAction
 
 
 class Dispatcher(QObject):
 
-    def __init__(self, gui_interface: GUIInterface, serial_reader: SerialReader):
+    def __init__(self, gui_interface: GUIInterface, serial_reader: SerialReader, wifi_reader: WiFiReader):
         super(Dispatcher, self).__init__()
         self.gui_interface: GUIInterface = gui_interface
         self.__connect_gui_signals()
         self.serial_reader: SerialReader = serial_reader
+        self.wifi_reader: WiFiReader = wifi_reader
         self.__connect_serial_reader_signals()
         self.current_lap: Lap = None
 
@@ -27,12 +28,12 @@ class Dispatcher(QObject):
     def start_gui(self):
         self.gui_interface.start_gui()
 
-    # Private method: Connects gui signals to their slots
+    # Connects gui signals to their slots
     def __connect_gui_signals(self) -> None:
         self.gui_interface.connect_start_signal(self.start_handler)
         self.gui_interface.connect_stop_signal(self.stop_handler)
 
-    # Private method: Connect serial input signals to their slots
+    # Connect serial input signals to their slots
     def __connect_serial_reader_signals(self) -> None:
         self.serial_reader.connect_receive_data_signal(self.receive_serial_data_handler)
 

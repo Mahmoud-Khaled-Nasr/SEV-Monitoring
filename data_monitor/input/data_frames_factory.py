@@ -11,7 +11,11 @@ from models.data_frames.driver_slave_MC_data_frame import DriverSlaveMCDataFrame
 from models.data_frames.lights_status_data_frame import LightsDataFrame
 from models.data_frames.switches_status_data_frame import SwitchesDataFrame
 
-from typing import List
+
+FRAME_ID_SIZE: int = 2
+# TODO choose proper sequences
+STARTING_SEQUENCE: bytes = b'a'
+TERMINATING_SEQUENCE: bytes = b'b'
 
 
 class UnknownFrameID(Exception):
@@ -46,6 +50,11 @@ def get_data_frame_size(frame_id: int) -> int:
         raise UnknownFrameID
 
     return frame_size
+
+
+def unpack_raw_id(raw_id: bytes) -> int:
+    _FRAME_ID_PARSING_STRING = "<h"
+    return unpack(_FRAME_ID_PARSING_STRING, raw_id)[0]
 
 
 def create_data_frame_object(frame_id, frame_value: bytes) -> DataFrame:
