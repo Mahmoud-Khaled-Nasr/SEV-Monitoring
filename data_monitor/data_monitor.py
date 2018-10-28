@@ -5,9 +5,11 @@ from data_monitor.input.wifi_reader import WiFiReader
 from typing import Callable
 from PyQt5.QtCore import pyqtSlot, QObject
 
+# Serial Info
 COM_PORT = "COM7"
 BAUD_RATE = 9600
 
+# WIFI Info
 broadcase_IP = ' '
 broadcase_port = 4211
 server_IP = '192.168.4.1'
