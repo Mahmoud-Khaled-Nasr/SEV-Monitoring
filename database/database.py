@@ -28,3 +28,15 @@ insert_data_frames = InsertDataFrames()
 from database.database_seed import seed_database
 
 seed_database()
+
+# TODO: test the new Session class
+'''
+class Session(sessionmaker):
+    def __init__(self):
+        # Create database engine
+        database_engine = create_engine('sqlite:///../monitoring.db', echo=False)
+        # Create all tables
+        DatabaseBaseClass.metadata.create_all(database_engine)
+        # Create the session using session maker constructor
+        super(Session, self).__init__(bind=database_engine)
+'''
