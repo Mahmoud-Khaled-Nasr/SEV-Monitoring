@@ -4255,7 +4255,7 @@ class Ui_MainWindow(object):
         self.label_98.setText(_translate("MainWindow", "m/s"))
         self.start_end_button.setText(_translate("MainWindow", "Start Lap"))
         self.pause_continue_button.setText(_translate("MainWindow", "Pause Readings"))
-        self.view_laps_button.setText(_translate("MainWindow", "Previous Laps"))
+        self.view_laps_button.setText(_translate("MainWindow", "Lap Viewer"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.main_tab), _translate("MainWindow", "Monitoring Data"))
         self.modulesGB.setStatusTip(_translate("MainWindow", "Temperatures"))
         self.modulesGB.setTitle(_translate("MainWindow", "Battery Modules Voltages and Temperatures"))
