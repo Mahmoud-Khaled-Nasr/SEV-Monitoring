@@ -52,6 +52,9 @@ class GUIActions(QObject):
 
     # Pause Readings/Continue button click action
     def pause_continue_button_clicked(self) -> None:
+        # Disable the pause button if a lap isn't running
+        if self.start_end_lap_button_mode == ButtonModes.START:
+            return
         if self.pause_continue_button_mode is ButtonModes.PAUSE:  # If the mode is pause
             # Set the mode and button text to continue
             self.pause_continue_button_mode = ButtonModes.CONTINUE
@@ -138,7 +141,9 @@ class GUIActions(QObject):
         # Define the slot of the ok button press signal
         def ok_button_slot():
             self.lap_name = line_edit.text()
-            input_dialog.close()
+            # TODO : Add appropriate message when no name is entered
+            if self.lap_name != "":
+                input_dialog.close()
 
         button.clicked.connect(ok_button_slot)
 

@@ -312,7 +312,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "SEV-CUT Monitoring"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Lap Viewer"))
         self.label.setText(_translate("MainWindow", "Previously Monitored Laps:"))
         self.deleteLabButton.setText(_translate("MainWindow", "Delete Lap"))
         self.viewLabButton.setText(_translate("MainWindow", "View Lap"))

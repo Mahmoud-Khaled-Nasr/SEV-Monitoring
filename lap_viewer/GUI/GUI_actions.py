@@ -145,8 +145,11 @@ class GUIActions(QObject):
     # Creates a new list item and adds it to the laps list
     def update_laps_list(self, laps) -> None:
         for lap in laps:
+            # Truncate lap start time (remove microsecond component)
+            lap_start_datetime = str(lap.start_time.replace(microsecond=0))
             # Create lap widget
-            lap_widget = LapWidget(lap_name=lap.name, lap_id=lap.id)
+            lap_widget = LapWidget(lap_name=lap.name, lap_id=lap.id,
+                                   lap_start_datetime=lap_start_datetime)
             # Add the lap to the list
             # Create a list widget item
             list_widget_item = QListWidgetItem()
