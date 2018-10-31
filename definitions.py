@@ -79,6 +79,7 @@ class DataFramesIDs:
 
 # Names for the database tables of data frames
 class DatabaseTablesNames:
+    LAPS_TABLE = "laps"
     DATA_FRAME_TABLE = "data_frames"
     CURRENT_TABLE = "currents"
     BUS_VOLTAGE_TABLE = "bus_voltages"

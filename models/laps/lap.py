@@ -4,11 +4,12 @@ from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.orm import relationship
 
 from database.database_base_class import DatabaseBaseClass
+from definitions import DatabaseTablesNames
 
 
 class Lap(DatabaseBaseClass):
 
-    __tablename__ = 'laps'
+    __tablename__ = DatabaseTablesNames.LAPS_TABLE
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     start_time = Column(DateTime, default=datetime.datetime.utcnow())
@@ -16,7 +17,8 @@ class Lap(DatabaseBaseClass):
     name = Column(String, nullable=False)
     comments = Column(String, nullable=True)
 
-    data_frames = relationship("DataFrame")
+    data_frames = relationship("DataFrame", cascade='all, delete, delete-orphan',
+                               back_populates='lap')
 
     def __init__(self, name: str, comments: str = None):
         self.name = name

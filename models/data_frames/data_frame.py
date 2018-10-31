@@ -14,7 +14,7 @@ class DataFrame(DatabaseBaseClass):
     # Value used to make DataFrame as an abstract class
     __metaclass__ = ABCMeta
     # The table name needed by SQL Alchemy
-    __tablename__ = 'data_frames'
+    __tablename__ = DatabaseTablesNames.DATA_FRAME_TABLE
 
     # Mete data of the table and considered as data members for the DataFrame class
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -31,7 +31,7 @@ class DataFrame(DatabaseBaseClass):
     }
 
     # link the DataFrame to Lap Class
-    lap = relationship("Lap", back_populates=DatabaseTablesNames.DATA_FRAME_TABLE)
+    lap = relationship("Lap", back_populates='data_frames')
 
     @abstractmethod
     def __init__(self, frame_id: int, frame_value: bytes):

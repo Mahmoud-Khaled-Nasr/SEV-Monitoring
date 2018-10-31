@@ -8,15 +8,14 @@ from models.data_frames.data_frame import DataFrame
 
 class InsertDataFrames (QThread):
 
-    data_frames = Queue()
-
     def __init__(self):
         super().__init__()
         self.database_session = Session()
+        self.data_frames_queue = Queue()
         self.operate: bool = True
 
     def add_new_frame(self, frame: DataFrame):
-        self.data_frames.put_nowait(frame)
+        self.data_frames_queue.put_nowait(frame)
 
     def run(self):
         self.operate = True
@@ -24,15 +23,16 @@ class InsertDataFrames (QThread):
         while self.operate:
             print("committing")
             try:
-                frame: DataFrame = self.data_frames.get(timeout=time_out)
+                frame: DataFrame = self.data_frames_queue.get(timeout=time_out)
+            # If the queue is empty, skip adding to the database
             except Empty:
                 continue
             self.database_session.add(frame)
             self.database_session.commit()
 
         # when the serial stops all the data in the queue should be flushed and the session is closed
-        while self.data_frames.qsize() != 0:
-            frame: DataFrame = self.data_frames.get_nowait()
+        while self.data_frames_queue.qsize() != 0:
+            frame: DataFrame = self.data_frames_queue.get_nowait()
             self.database_session.add(frame)
 
         self.database_session.commit()
